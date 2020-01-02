@@ -1,0 +1,46 @@
+<!-- Header footer section start -->
+<section id="header-footer">
+    <div class="row text-left">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">Receipt Documents</div>
+        </div>
+    </div>
+    <div class="row text-left" matchHeight="card">
+        <div class="col-lg-3 col-md-4" *ngFor="let receipt of receipts">
+            <div class="card">
+                <div class="card-header">
+                    <div class="media">
+                        <div class="media-left align-self-center">
+                            <h4>#{{receipt.id | idPad: 'RD'}}</h4>
+                            <!--                            <h6>{{receipt.supplier.name}}</h6>-->
+                        </div>
+                        <div class="media-body text-right">
+                            <h4>{{receipt.parts_count}}</h4>
+                            <span>Parts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let part of receipt.part_summary">
+                                {{part.name}}
+                            </li>
+                        </ul>
+                        <div class="mt-0">
+                            <a [routerLink]="'/inventory/orders/receive/'+receipt.order_id" class="card-link">Go to
+                                Order <i class="fa fa-angle-right"></i></a>
+                            <span class="float-right">
+                                <a href="javascript:void(0);" class="card-link">View Receipt</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="float-left">{{receipt.updated_at}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Header footer section end -->

@@ -1,0 +1,129 @@
+<!--Invoice template starts-->
+<section class="invoice-template">
+    <div class="card">
+        <div class="card-body p-3">
+            <div id="invoice-template" class="card-block">
+                <!-- Invoice Company Details -->
+                <div id="invoice-company-details" class="row">
+                    <div class="col-md-6 col-sm-12 text-center text-md-left">
+                        <img src="assets/img/logos/logo-big-black.png" alt="company logo" class="mb-2" width="80"
+                             height="80">
+                        <ul class="px-0 list-unstyled">
+                            <li class="text-bold-800">{{user.branch.company.name}}</li>
+                            <li>{{user.branch.company.address}}</li>
+                            <li><b>Branch: </b>{{user.branch.name}}</li>
+                            <li><b>Contact: </b>{{user.branch.company.contact}}</li>
+                            <li>Ghana</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center text-md-right">
+                        <h2>INVOICE</h2>
+                        <p class="pb-3" *ngIf="purchase"># {{purchase.id | idPad: idPrefix}}</p>
+                    </div>
+                </div>
+                <!--/ Invoice Company Details -->
+                <!-- Invoice Customer Details -->
+                <div id="invoice-customer-details" class="row pt-2">
+<!--                    <div class="col-sm-12 text-left">-->
+<!--                        <p class="text-muted">Bill To</p>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 col-sm-12  text-center text-md-left">-->
+<!--                        <ul class="px-0 list-unstyled">-->
+<!--                            <li class="text-bold-800">Mr. Bret Lezama</li>-->
+<!--                            <li>4879 Westfall Avenue,</li>-->
+<!--                            <li>Albuquerque,</li>-->
+<!--                            <li>New Mexico-87102.</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+                    <div class="col-md-6 col-sm-12 text-center text-md-right offset-6" *ngIf="purchase">
+                        <p><span class="text-muted">Invoice Date :</span> {{purchase.updated_at | date}}</p>
+                        <p><span class="text-muted">Terms :</span> Due on Receipt</p>
+                    </div>
+                </div>
+                <!--/ Invoice Customer Details -->
+                <!-- Invoice Items Details -->
+                <div id="invoice-items-details" class="pt-2">
+                    <div class="row">
+                        <div class="table-responsive col-sm-12">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Item &amp; Description</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-right">Quantity</th>
+                                    <th class="text-right">Part Info</th>
+                                    <th class="text-right">Category</th>
+                                </tr>
+                                </thead>
+                                <tbody *ngIf="purchase">
+                                <tr *ngFor="let part of purchase.parts; let i = index">
+                                    <th scope="row">{{i + 1}}</th>
+                                    <td>
+                                        <p>{{part.name}}</p>
+                                        <p class="text-muted">{{part.description}}.</p>
+                                    </td>
+                                    <ng-template [ngIf]="idPrefix === 'PO'">
+                                        <td class="text-right">GHS {{part.retail_price}}</td>
+                                        <td class="text-right">{{part.quantity}}</td>
+                                    </ng-template>
+                                    <ng-template [ngIf]="idPrefix === 'EN'">
+                                        <td></td><td></td>
+                                    </ng-template>
+                                    <td class="text-right">{{part.manufacturer.name}} {{part.model.name}}</td>
+                                    <td class="text-right">{{part.category.name}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 offset-6">
+                            <p class="lead">Total due</p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>Sub Total</td>
+                                        <td class="text-right" *ngIf="idPrefix == 'PO'">GHS {{subTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TAX (12%)</td>
+                                        <td class="text-right" *ngIf="idPrefix == 'PO'">GHS {{tax}}</td>
+                                    </tr>
+                                    <tr class="bg-grey bg-lighten-4">
+                                        <td class="text-bold-800">Total</td>
+                                        <td class="text-bold-800 text-right" *ngIf="idPrefix == 'PO'"> GHS {{subTotal + tax}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center">
+                                <p>Authorized person</p>
+                                <img src="assets/img/pages/signature-scan.png" alt="signature" class="width-250">
+                                <h6>{{auth.user.name}}</h6>
+<!--                                <p class="text-muted">Managing Director</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Invoice Footer -->
+                <div id="invoice-footer">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12">
+                            <h6><a href="">Terms &amp; Conditions</a></h6>
+                            <p>{{user.branch.company.motto}}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12 text-center">
+                            <a type="button" class="btn btn-primary btn-raised my-1" routerLink="/invoice" [preserveQueryParams]="true" target="_blank">
+                                <i class="fa fa-paper-plane-o"></i> Print Invoice
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Invoice Footer -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--Invoice template ends-->

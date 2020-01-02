@@ -1,0 +1,96 @@
+<!-- Minimal statistics section start -->
+<section id="minimal-statistics">
+    <div class="row text-left" matchHeight="card">
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3 py-3">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h3 class="mb-1 danger">{{enquiries.length}}</h3>
+                                <span>Outstanding Enquiries</span>
+                            </div>
+                            <div class="media-right align-self-center">
+                                <i class="icon-rocket danger font-large-2 float-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3 py-3">
+                        <div class="media">
+                            <div class="media-body text-left">
+                                <h3 class="mb-1 warning">50.60 %</h3>
+                                <span>Enquiries Ordered</span>
+                            </div>
+                            <div class="media-right align-self-center">
+                                <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- // Minimal statistics section end -->
+
+<!-- Header footer section start -->
+<section id="header-footer">
+    <div class="row text-left">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">Enquiry List</div>
+        </div>
+    </div>
+    <div class="row text-left" matchHeight="card">
+        <div class="col-lg-3 col-md-4" *ngFor="let enquiry of enquiries">
+            <div class="card">
+                <div class="card-header">
+                    <div class="media">
+                        <div class="media-left align-self-center">
+                            <h4># {{enquiry.id | idPad: 'EN'}}</h4>
+                            <h6><b>Supplier: </b>{{enquiry.supplier.name}}</h6>
+                        </div>
+                        <div class="media-body text-right">
+                            <h4>{{enquiry.parts_count}}</h4>
+                            <span>Parts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let part of enquiry.part_summary">
+                                {{part.name}}
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a (click)="delete(enquiry.id)" class="card-link text-danger">Delete</a>
+                            <span class="float-right">
+                                <a routerLink="/inventory/invoice" [queryParams]="{id: enquiry.id, type: 'enquiry'}"
+                                   class="card-link">View Invoice <i class="fa fa-angle-right"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="float-left">{{enquiry.updated_at}}</span>
+                    <span class="float-right">
+                        <a routerLink="/inventory/orders/edit" [queryParams]="{id: enquiry.id, type: 'enquiry'}"
+                           class="card-link">Edit Enquiry <i class="fa fa-angle-right"></i></a>
+                    </span>
+                    <br>
+                    <span class="float-right">
+                        <a href="#;" (click)="makePurchase()" class="card-link">Request Purchase <i
+                                class="fa fa-angle-right"></i></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Header footer section end -->

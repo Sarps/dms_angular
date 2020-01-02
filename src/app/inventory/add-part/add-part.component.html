@@ -1,0 +1,191 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header pb-2">
+                    <h4 class="card-title" id="bordered-layout-colored-controls">ADD NEW PART</h4>
+                </div>
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit($event)" id="add-part-form">
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-info"></i> General Info</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="number">Part No.</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="number" class="form-control border-primary"
+                                                       placeholder="Part No" name="number" [(ngModel)]="part.number">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="retail_price">Retail
+                                                Price(Exc)</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="retail_price"
+                                                       class="form-control border-primary" (keyup)="calculate(true)"
+                                                       placeholder="Amount" name="retail_price" [(ngModel)]="priceExc">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="name">Part Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="name" class="form-control border-primary"
+                                                       placeholder="Part Name" name="name" [(ngModel)]="part.name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="price_inc">Retail
+                                                Price(Inc)</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="price_inc"
+                                                       class="form-control border-primary" (keyup)="calculate(false)"
+                                                       placeholder="Amount" name="price_inc" [(ngModel)]="priceInc">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="supplier">Supplier</label>
+                                            <div class="col-md-9">
+                                                <select id="supplier" name="supplier_id" class="form-control" [(ngModel)]="part.supplier_id">
+                                                    <option value="none" selected disabled>Supplied By</option>
+                                                    <option [value]="supplier.id" *ngFor="let supplier of suppliers">{{supplier.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="cost_price">Cost Price</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="cost_price"
+                                                       class="form-control border-primary"
+                                                       placeholder="Amount" name="cost_price" [(ngModel)]="part.cost_price">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h4 class="form-section"><i class="ft-mail"></i> Specifics</h4>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="category">Category</label>
+                                            <div class="col-md-9">
+                                                <select id="category" name="category_id" class="form-control" [(ngModel)]="part.category_id">
+                                                    <option value="none" selected disabled>Category</option>
+                                                    <option [value]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="unit">Measurement Unit</label>
+                                            <div class="col-md-9">
+                                                <select id="unit" name="interested" class="form-control">
+                                                    <option value="none" selected="" disabled="">Unit</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="manufacturer">Manufacturer</label>
+                                            <div class="col-md-9">
+                                                <select id="manufacturer" name="manufacturer_id" class="form-control" [(ngModel)]="part.manufacturer_id">
+                                                    <option value="none" selected="" disabled="">Manufacturer</option>
+                                                    <option [value]="manufacturer.id" *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="model">Model</label>
+                                            <div class="col-md-9">
+                                                <select id="model" name="model_id" class="form-control" [(ngModel)]="part.model_id">
+                                                    <option value="none" selected="" disabled="">Model</option>
+                                                    <option [value]="model.id" *ngFor="let model of models">{{model.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="franchise">Franchise</label>
+                                            <div class="col-md-9">
+                                                <select id="franchise" name="franchise_id" class="form-control" [(ngModel)]="part.franchise_id">
+                                                    <option value="none" selected="" disabled="">Franchise</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="initialqty">Initial Qty.</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="initialqty" class="form-control border-primary"
+                                                       placeholder="Initial Qty" name="quantity" [(ngModel)]="part.quantity">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="reorder">Reorder Point</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="reorder" class="form-control border-primary"
+                                                       placeholder="Reorder Point" name="reorder" [(ngModel)]="part.reorder">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control">Select File</label>
+                                            <div class="col-md-9">
+                                                <label id="image" class="file  mx-auto">
+                                                    <input type="file" id="file" (change)="onFileSelect($event)" name="image">
+                                                    <span class="file-custom"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="description">Part
+                                                Description</label>
+                                            <div class="col-md-9">
+                                                <textarea id="description" class="form-control col-md-9 border-primary"
+                                                          name="description" rows="6" placeholder="Part Description"
+                                                >No description</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Cancel
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Save
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- // Basic form layout section end -->

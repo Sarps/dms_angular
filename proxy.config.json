@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "http://dms.test",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

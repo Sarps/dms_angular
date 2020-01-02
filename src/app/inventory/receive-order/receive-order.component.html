@@ -1,0 +1,98 @@
+<!--Shopping cart starts-->
+<section id="shopping-cart">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">New Enquiry / Order</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="form-section mb-3"><i class="ft-info"></i> General Info</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="supplier">Supplier</label>
+                                    <div class="col-md-9">
+                                        <select id="supplier" name="interested" class="form-control" [(ngModel)]="supplierId"
+                                                [disabled]="editMode">
+                                            <option value="none" selected disabled>Supplied By</option>
+                                            <option [value]="supplier.id"
+                                                    *ngFor="let supplier of suppliers">{{supplier.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3 label-control" for="due_date">Due Date</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group">
+                                            <input class="form-control" placeholder="yyyy-mm-dd" id="due_date"
+                                                   name="due_date" [(ngModel)]="dueDate" ngbDatepicker
+                                                   #d2="ngbDatepicker" disabled>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-responsive-md text-center">
+                            <thead>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Part No</th>
+                                <th>Model</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Intial Quantity</th>
+                                <th>Remaining</th>
+                                <th>Delivered</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let part of parts; let i = index;">
+                                <td><input type="checkbox" [(ngModel)]="part.checked" (change)="part.delivered = part.quantity"
+                                           [checked]="part.quantity === part.delivered"
+                                           [disabled]="part.quantity === part.delivered"></td>
+                                <td><img class="media-object round-media" [src]="part.image_url"
+                                         alt="part image" style="height: 75px;"/></td>
+                                <td>{{part.name}}</td>
+                                <td>{{part.number}}</td>
+                                <td>{{part.model}}</td>
+                                <td>{{part.category}}</td>
+                                <td>{{part.price}}</td>
+                                <td>{{part.initialQty}}</td>
+                                <td>{{part.quantity}}</td>
+                                <td *ngIf="requestType === 'order'">
+                                    {{part.delivered}}
+                                    <div class="btn-group ml-1">
+                                        <a class="bg-info px-1 py-1 white font-medium-5" (click)="modifyDelivered(part, -1)">-</a>
+                                        <a class="bg-info px-1 py-1 white font-medium-5" (click)="modifyDelivered(part, 1)">+</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-12">
+                                <span style="float: right">
+                                    <button class="btn btn-success btn-raised" (click)="save()" [disabled]="!savable">Generate Invoice</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shopping cart ends-->
