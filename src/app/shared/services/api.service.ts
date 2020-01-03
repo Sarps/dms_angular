@@ -121,4 +121,8 @@ export class ApiService {
     deleteCompany(id) {
         return this._http.delete(`${this.baseUrl}/companies/${id}`).toPromise();
     }
+
+    async restore(data: { id: any; type: any }) {
+        return this._http.post(`${this.baseUrl}/trash`, data).toPromise();
+    }
 }

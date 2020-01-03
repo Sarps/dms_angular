@@ -1,0 +1,24 @@
+.model.card {
+    
+    background-color: #009DA0;
+    
+    &.part {
+        background-color: #CDDC39;
+    }
+    
+    &.order {
+        background-color: #00BCD4;
+    }
+    
+    &.enquiry {
+        background-color: #009688;
+    }
+    
+    &.supplier {
+        background-color: #03A9F4;
+    }
+    
+    .type {
+        text-transform: uppercase;
+    }
+}

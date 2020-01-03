@@ -19,4 +19,13 @@ export class TrashCanComponent implements OnInit {
         this.apiService.getTrash().then((resp: Array<any>) => this.trash = resp);
     }
 
+    async restore(t: any) {
+        console.log('ijkhjk');
+        try {
+            await this.apiService.restore({id: t.id, type: t.type});
+            this.trash.splice(this.trash.findIndex(tr => tr.id === t.id && tr.type === t.type), 1);
+        } catch (e) {
+
+        }
+    }
 }

@@ -14,6 +14,7 @@ import {BackordersComponent} from './backorders/backorders.component';
 import {ReceiveOrderComponent} from './receive-order/receive-order.component';
 import {ReceiptsComponent} from './receipts/receipts.component';
 import {TrashCanComponent} from './trash-can/trash-can.component';
+import {MatchHeightModule} from '../shared/directives/match-height.directive';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {TrashCanComponent} from './trash-can/trash-can.component';
         FormsModule,
         ReactiveFormsModule,
         PipesModule,
+        MatchHeightModule,
     ],
     exports: []
 })

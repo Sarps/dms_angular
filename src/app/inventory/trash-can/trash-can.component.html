@@ -6,32 +6,78 @@
         </div>
     </div>
     <div class="row text-left" matchHeight="card">
-        <div class="col-lg-3 col-md-4" *ngFor="let receipt of trash">
-            <div class="card">
+        <div class="col-lg-2 col-md-3" *ngFor="let trash of trash">
+            <div class="model card" [ngClass]="trash.type">
                 <div class="card-header">
                     <div class="media">
                         <div class="media-left align-self-center">
-                            <h4>#{{receipt.id | idPad: 'RD'}}</h4>
-                            <!--                            <h6>{{receipt.supplier.name}}</h6>-->
+                            <h6 class="type">{{trash.type}}</h6>
                         </div>
                     </div>
                 </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let part of receipt.part_summary">
-                                {{part.name}}
-                            </li>
-                        </ul>
-                        <div class="mb-1">
-                            <span class="float-right">
-                                <a href="javascript:void(0);" class="card-link">Restore</a>
-                            </span>
+                <div class="card-content" [ngSwitch]="trash.type">
+                    <div class="card-body pt-2 pb-0" *ngSwitchCase="'order'">
+                        <div class="media">
+                            <div class="media-body white text-left">
+                                <h5 class="font-large-1 mb-0"># {{trash.id | idPad: 'PO'}}</h5>
+                            </div>
+                            <div class="media-right white text-right">
+                                <i class="icon-notebook font-large-1"></i>
+                            </div>
                         </div>
+                        <h6 class="mt-3 mb-3">{{trash.status}}</h6>
+                    </div>
+                    <div class="card-body pt-2 pb-0" *ngSwitchCase="'enquiry'">
+                        <div class="media">
+                            <div class="media-body white text-left">
+                                <h5 class="font-large-1 mb-0"># {{trash.id | idPad: 'EN'}}</h5>
+                            </div>
+                            <div class="media-right white text-right">
+                                <i class="icon-bulb font-large-1"></i>
+                            </div>
+                        </div>
+                        <h6 class="mt-3 mb-3">NO DATA</h6>
+                    </div>
+                    <div class="card-body pt-2 pb-0" *ngSwitchCase="'supplier'">
+                        <div class="media">
+                            <div class="media-body white text-left">
+                                <h5 class="font-large-1 mb-0">{{trash.name}}</h5>
+                            </div>
+                            <div class="media-right white text-right">
+                                <i class="ft-wind font-large-1"></i>
+                            </div>
+                        </div>
+                        <h6 class="mt-3 mb-3">{{trash.address}}</h6>
+                    </div>
+                    <div class="card-body pt-2 pb-0" *ngSwitchCase="'part'">
+                        <div class="media">
+                            <div class="media-body white text-left">
+                                <h5 class="font-large-1 mb-0">#{{trash.number}}</h5>
+                            </div>
+                            <div class="media-right white text-right">
+                                <i class="icon-bulb font-large-1"></i>
+                            </div>
+                        </div>
+                        <h6 class="mt-3 mb-3">{{trash.name}}</h6>
+                    </div>
+                    <div class="card-body pt-2 pb-0" *ngSwitchDefault>
+                        <div class="media">
+                            <div class="media-body white text-left">
+                                <h5 class="font-large-1 mb-0">NO TITLE</h5>
+                            </div>
+                            <div class="media-right white text-right">
+                                <i class="icon-bulb font-large-1"></i>
+                            </div>
+                        </div>
+                        <h6 class="mt-3 mb-3">NO SUBTITLE</h6>
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    <span class="float-left">{{receipt.deleted_at | date: 'medium'}}</span>
+                    <span class="float-left">{{trash.deleted_at | date: 'medium'}}</span>
+                    <br>
+                    <span class="float-right">
+                        <a (click)="restore(trash)" class="card-link text-primary">Restore</a>
+                    </span>
                 </div>
             </div>
         </div>
