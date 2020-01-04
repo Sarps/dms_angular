@@ -23,7 +23,7 @@ export const ROUTES: RouteInfo[] = [
             { path: '/servicing/customers/new', title: 'New Customer Acct', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/servicing/vehicles/new', title: 'Add Vehicle', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/servicing/orders/list', title: 'Service Orders', icon: 'fa fa-address-card-o', class: '', badge: '', badgeClass: '', submenu: [] },
-            { path: '/servicing/orders/new', title: 'New Service Order', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/servicing/orders/add', title: 'New Service Order', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
         ]
     },
     {
