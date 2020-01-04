@@ -94,6 +94,10 @@ export class ApiService {
         return this._http.put(`${this.baseUrl}/orders/receive/${id}`, data).toPromise();
     }
 
+    confirmOrder(id: number) {
+        return this._http.put(`${this.baseUrl}/orders/confirm/${id}`, {}).toPromise();
+    }
+
     deleteOrder(id) {
         return this._http.delete(`${this.baseUrl}/orders/${id}`).toPromise();
     }

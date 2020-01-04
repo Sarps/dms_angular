@@ -22,8 +22,8 @@ export class TrashCanComponent implements OnInit {
     async restore(t: any) {
         console.log('ijkhjk');
         try {
-            await this.apiService.restore({id: t.id, type: t.type});
-            this.trash.splice(this.trash.findIndex(tr => tr.id === t.id && tr.type === t.type), 1);
+            await this.apiService.restore({id: t.id, type: t.model_type});
+            this.trash.splice(this.trash.findIndex(tr => tr.id === t.id && tr.model_type === t.model_type), 1);
         } catch (e) {
 
         }

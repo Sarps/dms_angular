@@ -17,6 +17,8 @@ export class InvoicePageComponent implements OnInit {
     tax: number;
     idPrefix: string;
     user: any;
+    type: string;
+    id: number;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService,
                 private router: Router, public auth: AuthGuard) {
@@ -31,14 +33,16 @@ export class InvoicePageComponent implements OnInit {
     async loadData() {
         try {
             this.route.queryParams.subscribe(async params => {
-                switch (params.type) {
+                this.type = params.type;
+                this.id = params.id;
+                switch (this.type) {
                     case 'enquiry':
-                        this.purchase = await this.apiService.getEnquiry(params.id);
+                        this.purchase = await this.apiService.getEnquiry(this.id);
                         this.idPrefix = 'EN';
                         break;
 
                     case 'order':
-                        this.purchase = await this.apiService.getOrder(params.id);
+                        this.purchase = await this.apiService.getOrder(this.id);
                         this.idPrefix = 'PO';
                         break;
                     default:
@@ -54,4 +58,8 @@ export class InvoicePageComponent implements OnInit {
         }
     }
 
+    async confirmOrder() {
+        await this.apiService.confirmOrder(this.id);
+        this.purchase.status = 'CONFIRMED';
+    }
 }

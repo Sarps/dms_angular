@@ -70,7 +70,7 @@ export class NewEnquiryComponent implements OnInit {
                         type: this.orderType,
                         due_date
                     });
-                    await this.router.navigate(['/inventory/receipts/list']);
+                    await this.router.navigate(['/inventory/orders/list']);
                     break;
                 default:
                     alert('You need to select a purchase type');
