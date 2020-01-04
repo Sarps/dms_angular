@@ -5,6 +5,7 @@ import {FullLayoutComponent} from './layouts/full/full-layout.component';
 import {ContentLayoutComponent} from './layouts/content/content-layout.component';
 
 import {AuthGuard} from './shared/auth/auth-guard.service';
+import {TrashCanComponent} from './trash-can/trash-can.component';
 
 const appRoutes: Routes = [
     {
@@ -14,8 +15,16 @@ const appRoutes: Routes = [
                 loadChildren: () => import('./inventory/inventory.module').then(m => m.InventoryModule)
             },
             {
+                path: 'servicing',
+                loadChildren: () => import('./servicing/servicing.module').then(m => m.ServicingModule)
+            },
+            {
                 path: 'management',
                 loadChildren: () => import('./management/management.module').then(m => m.ManagementModule)
+            },
+            {
+                path: 'trash',
+                component: TrashCanComponent,
             },
             {
                 path: '',

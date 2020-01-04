@@ -20,6 +20,8 @@ import {FullLayoutComponent} from './layouts/full/full-layout.component';
 import {AuthService} from './shared/auth/auth.service';
 import {AuthGuard} from './shared/auth/auth-guard.service';
 import {AuthInterceptor} from './shared/interceptors/auth-interceptor';
+import {TrashCanComponent} from './trash-can/trash-can.component';
+import {PipesModule} from './shared/pipes/pipes.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -32,7 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 
 @NgModule({
-    declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent],
+    declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, TrashCanComponent],
     imports: [
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -46,7 +48,8 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        PerfectScrollbarModule
+        PerfectScrollbarModule,
+        PipesModule
     ],
     providers: [
         AuthService,

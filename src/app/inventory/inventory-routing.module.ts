@@ -9,7 +9,7 @@ import {NewEnquiryComponent} from './new-enquiry/new-enquiry.component';
 import {BackordersComponent} from './backorders/backorders.component';
 import {ReceiveOrderComponent} from './receive-order/receive-order.component';
 import {ReceiptsComponent} from './receipts/receipts.component';
-import {TrashCanComponent} from './trash-can/trash-can.component';
+import {TrashCanComponent} from '../trash-can/trash-can.component';
 
 
 const routes: Routes = [
@@ -56,11 +56,6 @@ const routes: Routes = [
     {
         path: 'receipts/list',
         component: ReceiptsComponent,
-        data: { title: 'Receive Order' },
-    },
-    {
-        path: 'trash',
-        component: TrashCanComponent,
         data: { title: 'Receive Order' },
     },
 ];

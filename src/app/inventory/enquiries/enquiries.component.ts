@@ -26,6 +26,6 @@ export class EnquiriesComponent implements OnInit {
 
     async delete(id: number) {
         await this.apiService.deleteEnquiry(id);
-        await this.router.navigate(['/inventory/trash']);
+        await this.router.navigate(['/trash']);
     }
 }

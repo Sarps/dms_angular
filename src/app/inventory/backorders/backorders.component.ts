@@ -22,7 +22,7 @@ export class BackordersComponent implements OnInit {
 
     async delete(id: number) {
         await this.apiService.deleteOrder(id);
-        await this.router.navigate(['/inventory/trash']);
+        await this.router.navigate(['/trash']);
     }
 
 }

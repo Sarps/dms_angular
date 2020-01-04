@@ -22,6 +22,6 @@ export class InventoryMaintenanceComponent implements OnInit {
 
     async delete(id: number) {
         await this.apiService.deletePart(id);
-        await this.router.navigate(['/inventory/trash']);
+        await this.router.navigate(['/trash']);
     }
 }
