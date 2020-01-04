@@ -4,9 +4,9 @@
   "license": "",
   "scripts": {
     "ng": "ng",
-    "proxy": "ng serve --proxy-config proxy.config.json --disable-host-check",
-    "start": "ng serve",
-    "build": "ng build --prod --deployUrl=/kwansah_auto/ --baseHref=/kwansah_auto/",
+    "proxy": "ng serve",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -51,7 +51,8 @@
     "sweetalert2": "8.11.6",
     "tslib": "1.9.3",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "express": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",
