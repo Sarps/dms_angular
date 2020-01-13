@@ -19,6 +19,10 @@ const appRoutes: Routes = [
                 loadChildren: () => import('./servicing/servicing.module').then(m => m.ServicingModule)
             },
             {
+                path: 'financials',
+                loadChildren: () => import('./financials/financials.module').then(m => m.FinancialsModule)
+            },
+            {
                 path: 'management',
                 loadChildren: () => import('./management/management.module').then(m => m.ManagementModule)
             },

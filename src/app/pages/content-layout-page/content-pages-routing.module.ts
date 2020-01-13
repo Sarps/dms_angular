@@ -5,13 +5,13 @@ import {MaintenancePageComponent} from './maintenance/maintenance-page.component
 import {LoginPageComponent} from './login/login-page.component';
 import {RegisterPageComponent} from './register/register-page.component';
 import {ErrorPageComponent} from './error/error-page.component';
-import {InvoicePageComponent} from './invoice/invoice-page.component';
+import {InvoicePageComponent} from './invoice-page.component';
 import {AuthGuard} from '../../shared/auth/auth-guard.service';
 
 
 const routes: Routes = [
     {
-        path: 'maintenance',
+        path: 'customers',
         component: MaintenancePageComponent,
         data: { title: 'Under Maintenance' },
     },

@@ -9,10 +9,10 @@
                         <img src="assets/img/logos/logo-big-black.png" alt="company logo" class="mb-2" width="80"
                              height="80">
                         <ul class="px-0 list-unstyled">
-                            <li class="text-bold-800">{{user.branch.company.name}}</li>
-                            <li>{{user.branch.company.address}}</li>
-                            <li><b>Branch: </b>{{user.branch.name}}</li>
-                            <li><b>Contact: </b>{{user.branch.company.contact}}</li>
+                            <li class="text-bold-800">{{user.company.name}}</li>
+                            <li>{{user.company.address}}</li>
+<!--                            <li><b>Branch: </b>{{user.branch.name}}</li>-->
+                            <li><b>Contact: </b>{{user.company.contact}}</li>
                             <li>Ghana</li>
                         </ul>
                     </div>
@@ -63,8 +63,13 @@
                                         <p>{{part.name}}</p>
                                         <p class="text-muted">{{part.description}}.</p>
                                     </td>
-                                    <td class="text-right">GHS {{part.retail_price}}</td>
-                                    <td class="text-right">{{part.quantity}}</td>
+                                    <ng-template [ngIf]="idPrefix === 'PO'">
+                                        <td class="text-right">GHS {{part.retail_price}}</td>
+                                        <td class="text-right">{{part.pivot.quantity - part.pivot.delivered}}</td>
+                                    </ng-template>
+                                    <ng-template [ngIf]="idPrefix === 'EN'">
+                                        <td></td><td></td>
+                                    </ng-template>
                                     <td class="text-right">{{part.manufacturer.name}} {{part.model.name}}</td>
                                     <td class="text-right">{{part.category.name}}</td>
                                 </tr>
@@ -80,15 +85,15 @@
                                     <tbody>
                                     <tr>
                                         <td>Sub Total</td>
-                                        <td class="text-right">GHS {{subTotal}}</td>
+                                        <td class="text-right" *ngIf="idPrefix == 'PO'">GHS {{subTotal}}</td>
                                     </tr>
                                     <tr>
                                         <td>TAX (12%)</td>
-                                        <td class="text-right">GHS {{tax}}</td>
+                                        <td class="text-right" *ngIf="idPrefix == 'PO'">GHS {{tax}}</td>
                                     </tr>
                                     <tr class="bg-grey bg-lighten-4">
                                         <td class="text-bold-800">Total</td>
-                                        <td class="text-bold-800 text-right"> GHS {{subTotal + tax}}</td>
+                                        <td class="text-bold-800 text-right" *ngIf="idPrefix == 'PO'"> GHS {{subTotal + tax}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -103,11 +108,22 @@
                     </div>
                 </div>
                 <!-- Invoice Footer -->
-                <div id="invoice-footer">
-                    <div class="row">
-                        <div class="col-md-9 col-sm-12">
+                <div id="invoice-footer" class="mt-5">
+                    <div class="row mt-5">
+                        <div class="col-md-6 col-sm-12">
                             <h6><a href="">Terms &amp; Conditions</a></h6>
-                            <p>{{user.branch.company.motto}}</p>
+                            <p>{{user.company.motto}}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12 text-right" *ngIf="!printing">
+                            <a type="button" class="btn btn-primary btn-raised my-1" target="_blank"
+                               (click)="confirmOrder()" *ngIf="purchase && purchase.status === 'UNCONFIRMED'">
+                                <i class="fa fa-paper-plane-o"></i> Confirm Order
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-12 text-right" *ngIf="!printing">
+                            <a type="button" class="btn btn-primary btn-raised my-1" routerLink="/invoice" [preserveQueryParams]="true" target="_blank">
+                                <i class="fa fa-paper-plane-o"></i> Print Invoice
+                            </a>
                         </div>
                     </div>
                 </div>

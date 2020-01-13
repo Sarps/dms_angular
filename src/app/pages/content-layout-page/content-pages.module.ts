@@ -10,7 +10,7 @@ import {ForgotPasswordPageComponent} from './forgot-password/forgot-password-pag
 import {LockScreenPageComponent} from './lock-screen/lock-screen-page.component';
 import {LoginPageComponent} from './login/login-page.component';
 import {RegisterPageComponent} from './register/register-page.component';
-import {InvoicePageComponent} from './invoice/invoice-page.component';
+import {InvoicePageComponent} from './invoice-page.component';
 import {IdPadPipe} from '../../shared/pipes/id-pad.pipe';
 import {PipesModule} from '../../shared/pipes/pipes.module';
 

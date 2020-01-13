@@ -40,8 +40,11 @@
 
                                         </div>
                                         <div class="recover-pass">
-                                            <button class="btn btn-primary">
-                                                <a (click)="onSubmit()" class="text-decoration-none text-white">Login</a>
+                                            <button class="btn btn-primary" disabled *ngIf="loading">
+                                                <i class="ft-refresh-cw spinner"></i>
+                                            </button>
+                                            <button class="btn btn-primary" *ngIf="!loading" (click)="onSubmit()">
+                                                <span class="text-decoration-none text-white">Login</span>
                                             </button>
                                         </div>
                                     </div>

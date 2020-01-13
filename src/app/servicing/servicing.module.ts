@@ -9,13 +9,16 @@ import {OrdersComponent} from './orders/orders.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {UiSwitchModule} from 'ngx-ui-switch';
+import {CustomersComponent} from './customers/customers.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [
         AddVehicleComponent,
         AddOrderComponent,
         AddCustomerComponent,
-        OrdersComponent
+        OrdersComponent,
+        CustomersComponent
     ],
     imports: [
         CommonModule,
@@ -24,7 +27,8 @@ import {UiSwitchModule} from 'ngx-ui-switch';
         ReactiveFormsModule,
         ServicingRoutingModule,
         NgbDatepickerModule,
-        UiSwitchModule
+        UiSwitchModule,
+        NgSelectModule
     ]
 })
 export class ServicingModule {

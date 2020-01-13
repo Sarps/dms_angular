@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../shared/services/api.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-bordered',
@@ -9,9 +10,9 @@ import {Router} from '@angular/router';
     styleUrls: ['./add-vehicle.component.scss']
 })
 export class AddVehicleComponent implements OnInit {
-    public part: any;
-    public suppliers: Array<any> = [];
-    public categories: Array<any> = [];
+    public vehicle: any;
+    public staffList: Array<any> = [];
+    public customers: Array<any> = [];
     public manufacturers: Array<any> = [];
     public models: Array<any> = [];
     public file: any;
@@ -19,9 +20,9 @@ export class AddVehicleComponent implements OnInit {
     public priceInc: number;
     public priceExc: number;
 
-    constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
-        this.suppliers = [];
-        this.part = {
+    constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router, private toastr: ToastrService) {
+        this.staffList = [];
+        this.vehicle = {
             'number': '',
             'name': '',
             'retail_price': 0.0,
@@ -34,34 +35,21 @@ export class AddVehicleComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.apiService.getSupplierList().then((resp: Array<any>) => this.suppliers = resp);
+        this.apiService.getStaffList().then((resp: Array<any>) => this.staffList = resp);
         this.apiService.getManufacturerList().then((resp: Array<any>) => this.manufacturers = resp);
         this.apiService.getModelList().then((resp: Array<any>) => this.models = resp);
-        this.apiService.getCategories().then((resp: Array<any>) => this.categories = resp);
+        this.apiService.getCustomerList().then((resp: Array<any>) => this.customers = resp);
     }
 
     async onSubmit(event) {
         console.warn(event);
         const formData = new FormData(event.target);
         try {
-            await this.apiService.addPart(formData);
-            await this.router.navigate(['/inventory/list']);
+            await this.apiService.addVehicle(this.vehicle);
+            this.toastr.success(`Vehicle with Reg: <b>${this.vehicle.reg_no}</b> added to customer`, 'Saved', {enableHtml: true});
+            this.vehicle = {};
         } catch (e) {
             console.error(e);
-        }
-    }
-
-    onFileSelect(event) {
-        if (event.target.files.length > 0) {
-            this.file = event.target.files[0];
-        }
-    }
-
-    calculate(isBackwards: boolean) {
-        if (!isBackwards) {
-            this.priceExc = +this.priceInc / 1.03;
-        } else {
-            this.priceInc = +this.priceExc * 1.03;
         }
     }
 }

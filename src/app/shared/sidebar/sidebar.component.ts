@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         private configService: ConfigService,
         public auth: AuthGuard
     ) {
-        this.logoUrl = auth.user.branch.company.logoUrl || 'assets/img/logo.png';
+        this.logoUrl = auth.user.company.logoUrl || 'assets/img/logo.png';
         if (this.depth === undefined) {
             this.depth = 0;
             this.expanded = true;

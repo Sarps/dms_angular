@@ -4,15 +4,16 @@ import {AddCustomerComponent} from './add-customer/add-customer.component';
 import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
 import {OrdersComponent} from './orders/orders.component';
 import {AddOrderComponent} from './add-order/add-order.component';
+import {CustomersComponent} from './customers/customers.component';
 
 const routes: Routes = [
-    // {
-    //     path: 'customers/list',
-    //     component: ,
-    //     data: { title: 'Part List' },
-    // },
     {
-        path: 'customers/new',
+        path: 'sales-ledger/list',
+        component: CustomersComponent,
+        data: { title: 'Part List' },
+    },
+    {
+        path: 'sales-ledger/new',
         component: AddCustomerComponent,
         data: { title: 'New Part' },
     },

@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header pb-2">
-                    <h4 class="card-title" id="bordered-layout-colored-controls">ADD NEW PART</h4>
+                    <h4 class="card-title" id="bordered-layout-colored-controls">ADD NEW CUSTOMER</h4>
                 </div>
                 <div class="card-content">
                     <div class="px-3">
@@ -27,8 +27,8 @@
                                             <label class="col-md-3 label-control" for="accountName">Account Name</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="accountName" class="form-control border-primary"
-                                                       placeholder="Account Name" name="accountName"
-                                                       [(ngModel)]="part.accountName">
+                                                       placeholder="Account Name" name="account_name"
+                                                       [(ngModel)]="part.account_name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -40,10 +40,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="address">Address</label>
+                                            <label class="col-md-3 label-control" for="email">Email</label>
                                             <div class="col-md-9">
-                                                <textarea id="address" class="form-control col-md-9 border-primary"
-                                                          name="address" rows="3" placeholder="Address"></textarea>
+                                                <input type="text" id="email" class="form-control border-primary"
+                                                       placeholder="Email" name="email" [(ngModel)]="part.email">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -53,7 +53,7 @@
                                                        placeholder="Mobile" name="mobile" [(ngModel)]="part.mobile">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="telephone">Telephone</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="telephone" class="form-control border-primary"
@@ -64,53 +64,35 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="address">Address</label>
+                                            <div class="col-md-9">
+                                                <textarea id="address" class="form-control col-md-9 border-primary"
+                                                          name="address" rows="3" placeholder="Address" [(ngModel)]="part.address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-md-3 label-control" for="tax_type">Tax Type</label>
                                             <div class="col-md-9">
                                                 <select id="tax_type" name="tax_type" class="form-control"
                                                         [(ngModel)]="part.tax_type">
                                                     <option value="none" selected disabled>Tax Type</option>
+                                                    <option value="simple">Simple Interest</option>
+                                                    <option value="compound">Compound Interest</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="tax_value">Tax P%</label>
+                                            <label class="col-md-3 label-control" for="tax_perc">Tax P%</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="tax_value" disabled
-                                                       class="form-control border-primary"
-                                                       placeholder="Amount" name="tax_value">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="modified_at">Modified
-                                                Date</label>
-                                            <div class="col-md-9">
-                                                <div class="input-group">
-                                                    <input class="form-control" placeholder="yyyy-mm-dd"
-                                                           id="modified_at"
-                                                           name="modified_at" [(ngModel)]="part.modified_at"
-                                                           ngbDatepicker
-                                                           #d2="ngbDatepicker">
-                                                    <div class="input-group-append">
-                                                        <div class="input-group-text" (click)="d2.toggle()">
-                                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="modified_by">Modified By</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="modified_by"
-                                                       class="form-control border-primary" (keyup)="calculate(true)"
-                                                       placeholder="Amount" name="modified_by" [(ngModel)]="priceExc">
+                                                <input type="text" id="tax_perc" class="form-control border-primary"
+                                                       placeholder="Tax Percentage" name="tax_perc">
                                             </div>
                                         </div>
                                         <div class="form-group row last">
                                             <label class="col-md-3 label-control" for="comments">Comments</label>
                                             <div class="col-md-9">
                                                 <textarea id="comments" class="form-control col-md-9 border-primary"
-                                                          name="comments" rows="6" placeholder="Address"></textarea>
+                                                          name="comments" rows="6" placeholder="Comments"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -127,14 +109,16 @@
                                                 <select id="account_type" name="account_type" class="form-control"
                                                         [(ngModel)]="part.account_type">
                                                     <option value="none" selected disabled>Account Type</option>
+                                                    <option value="checking">Checking Account</option>
+                                                    <option value="savings">Savings Account</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="ref_no">Account Ref No</label>
+                                            <label class="col-md-3 label-control" for="account_ref">Account Ref No</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="ref_no" class="form-control border-primary"
-                                                       placeholder="Amount" name="ref_no">
+                                                <input type="text" id="account_ref" class="form-control border-primary"
+                                                       placeholder="Reference Number" name="account_ref">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -152,19 +136,21 @@
                                                 <select id="status" name="status" class="form-control"
                                                         [(ngModel)]="part.status">
                                                     <option value="none" selected disabled>Status</option>
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Inactive</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="status">Stop Account</label>
                                             <div class="col-md-9">
-                                                <ui-switch></ui-switch>
+                                                <ui-switch [(ngModel)]="part.stop_account"></ui-switch>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="status">On Hold</label>
                                             <div class="col-md-9">
-                                                <ui-switch></ui-switch>
+                                                <ui-switch [(ngModel)]="part.on_hold"></ui-switch>
                                             </div>
                                         </div>
                                     </div>

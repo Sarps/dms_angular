@@ -71,7 +71,7 @@
                         <div class="mt-4">
                             <a (click)="delete(order.id)" class="card-link text-danger">Delete</a>
                             <span class="float-right">
-                                <a routerLink="/inventory/invoice" [queryParams]="{id: order.id, type: 'enquiry'}"
+                                <a routerLink="/inventory/invoice" [queryParams]="{id: order.id, type: 'order'}"
                                    class="card-link">View Invoice <i class="fa fa-angle-right"></i></a>
                             </span>
                         </div>

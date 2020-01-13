@@ -126,7 +126,29 @@ export class ApiService {
         return this._http.delete(`${this.baseUrl}/companies/${id}`).toPromise();
     }
 
+    async getCustomerList() {
+        const resp = <Array<any>> await this._http.get(`${this.baseUrl}/customers`).toPromise();
+        return resp.map(r => ({...r, ...r.userable, userable: undefined}));
+    }
+
+    addCustomer(data) {
+        return this._http.post(`${this.baseUrl}/customers`, data).toPromise();
+    }
+
+    deleteCustomer(id) {
+        return this._http.delete(`${this.baseUrl}/customers/${id}`).toPromise();
+    }
+
     async restore(data: { id: any; type: any }) {
         return this._http.post(`${this.baseUrl}/trash`, data).toPromise();
+    }
+
+    async getStaffList() {
+        const resp = <Array<any>> await this._http.get(`${this.baseUrl}/staff`).toPromise();
+        return resp.map(r => ({...r, ...r.userable, userable: undefined}));
+    }
+
+    async addVehicle(data: FormData) {
+        return this._http.post(`${this.baseUrl}/vehicles`, data).toPromise();
     }
 }

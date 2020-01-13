@@ -1,0 +1,64 @@
+<!--Extended Table starts-->
+<div class="row text-left">
+    <div class="col-12">
+        <div class="content-header">Financials - Debtors' List</div>
+        <p class="content-sub-header">Summary of all customers and their transactions.</p>
+    </div>
+</div>
+<!--Shopping cart starts-->
+<section id="shopping-cart">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <table class="table table-responsive-md text-center">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Account Name</th>
+                                <th>Credit Limit</th>
+                                <th>Available Credit</th>
+                                <th>Credit Balance</th>
+                                <th>Current</th>
+                                <th>30 Days+</th>
+                                <th>60 Days+</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><a class="btn btn-success btn-raised" href="/servicing/customers/new">New Customer</a></td>
+                            </tr>
+                            <tr *ngFor="let customer of customers">
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.account_name}}</td>
+                                <td>GHS {{customer.credit_limit}}</td>
+                                <td>GHS {{customer.credit_limit}}</td>
+                                <td>GHS 0</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a class="danger" data-original-title="" title="" (click)="delete(customer.id)">
+                                        <i class="ft-trash font-medium-3"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shopping cart ends-->

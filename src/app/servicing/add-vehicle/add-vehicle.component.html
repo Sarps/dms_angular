@@ -19,7 +19,7 @@
                                             <label class="col-md-3 label-control" for="reg_no">Reg No.</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="reg_no" class="form-control border-primary"
-                                                       placeholder="Part No" name="reg_no" [(ngModel)]="part.reg_no">
+                                                       placeholder="Part No" name="reg_no" [(ngModel)]="vehicle.reg_no">
                                             </div>
                                         </div>
 
@@ -27,7 +27,7 @@
                                             <label class="col-md-3 label-control" for="chasis_no">Chasis No.</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="chasis_no" class="form-control border-primary"
-                                                       placeholder="Part No" name="chasis_no" [(ngModel)]="part.chasis_no">
+                                                       placeholder="Part No" name="chasis_no" [(ngModel)]="vehicle.chasis_no">
                                             </div>
                                         </div>
 
@@ -35,7 +35,7 @@
                                             <label class="col-md-3 label-control" for="engine_no">Engine No.</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="engine_no" class="form-control border-primary"
-                                                       placeholder="Part No" name="engine_no" [(ngModel)]="part.engine_no">
+                                                       placeholder="Part No" name="engine_no" [(ngModel)]="vehicle.engine_no">
                                             </div>
                                         </div>
 
@@ -51,7 +51,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="manufacturer">Manufacturer</label>
                                             <div class="col-md-9">
-                                                <select id="manufacturer" name="manufacturer_id" class="form-control" [(ngModel)]="part.manufacturer_id">
+                                                <select id="manufacturer" name="manufacturer_id" class="form-control" [(ngModel)]="vehicle.manufacturer_id">
                                                     <option value="none" selected="" disabled="">Manufacturer</option>
                                                     <option [value]="manufacturer.id" *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
                                                 </select>
@@ -61,9 +61,9 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="model">Model</label>
                                             <div class="col-md-9">
-                                                <select id="model" name="model_id" class="form-control" [(ngModel)]="part.model_id">
+                                                <select id="model" name="part_model_id" class="form-control" [(ngModel)]="vehicle.part_model_id">
                                                     <option value="none" selected="" disabled="">Model</option>
-                                                    <option [value]="model.id" *ngFor="let model of models | keyFilter: 'manufacturer_id':  +part.manufacturer_id">{{model.name}}</option>
+                                                    <option [value]="model.id" *ngFor="let model of models | keyFilter: 'manufacturer_id':  +vehicle.manufacturer_id">{{model.name}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="franchise">Franchise</label>
                                             <div class="col-md-9">
-                                                <select id="franchise" name="franchise_id" class="form-control" [(ngModel)]="part.franchise_id">
+                                                <select id="franchise" name="part_franchise_id" class="form-control" [(ngModel)]="vehicle.part_franchise_id">
                                                     <option value="none" selected="" disabled="">Franchise</option>
                                                 </select>
                                             </div>
@@ -82,23 +82,44 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="customer_name">Customer Name</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="customer_name" disabled
-                                                       class="form-control border-primary"
-                                                       placeholder="Customer Name" name="retail_price">
+                                                <ng-select [items]="customers" bindLabel="name" bindValue="id" id="customer_name"
+                                                           placeholder="Select Customer" name="customer_id" [(ngModel)]="vehicle.customer_id">
+                                                    <ng-template ng-label-tmp let-item="item">
+                                                        <b class="mx-1">{{item.name}}</b> @{{item.email}}
+                                                    </ng-template>
+                                                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                        <div class="my-2 mx-2">
+                                                            <b class="my-1">{{item.name}}</b> @<span>{{item.email}}</span>
+                                                            <br>
+                                                            <span><i class="fa fa-address-card-o mr-1"></i>{{item.address}}</span> <span><i class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
+                                                        </div>
+                                                    </ng-template>
+                                                </ng-select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="contact_person">Contact Person</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="contact_person" class="form-control border-primary"
-                                                       placeholder="Contact Person" name="retail_price" disabled>
+                                                <ng-select [items]="staffList" bindValue="id" id="contact_person"
+                                                           placeholder="Select Staff" name="staff_id" [(ngModel)]="vehicle.staff_id">
+                                                    <ng-template ng-label-tmp let-item="item">
+                                                        <b class="mx-1">{{item.name}}</b> @{{item.email}}
+                                                    </ng-template>
+                                                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                        <div class="my-2 mx-2">
+                                                            <b class="my-1">{{item.name}}</b> @<span>{{item.email}}</span>
+                                                            <br>
+                                                            <span><i class="fa fa-bank mr-1"></i>{{item.branch.name}}</span> <span><i class="fa fa-address-card-o ml-2 mr-1"></i>{{item.branch.address}}</span>
+                                                        </div>
+                                                    </ng-template>
+                                                </ng-select>
                                             </div>
                                         </div>
                                         <div class="form-group row mt-2">
                                             <label class="col-md-9 offset-md-3" for="notes">Notes</label>
                                             <div class="col-md-9 offset-md-3">
                                                 <textarea id="notes" class="form-control col-md-9 border-primary"
-                                                          name="notes" rows="6" placeholder="Notes"></textarea>
+                                                          name="note" rows="6" placeholder="Notes"></textarea>
                                             </div>
                                         </div>
                                     </div>

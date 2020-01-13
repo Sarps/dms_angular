@@ -7,7 +7,7 @@
                     <div class="px-3 py-3">
                         <div class="media">
                             <div class="media-body text-left">
-                                <h3 class="mb-1 danger">{{orders.length}}</h3>
+                                <h3 class="mb-1 danger">{{confirmedOrders.length}}</h3>
                                 <span>Outstanding Orders</span>
                             </div>
                             <div class="media-right align-self-center">
@@ -42,12 +42,13 @@
 <!-- Header footer section start -->
 <section id="header-footer">
     <div class="row text-left">
-        <div class="col-12 mt-3 mb-1">
+        <div class="col-12 mt-1 mb-2">
             <div class="content-header">Purchase Orders</div>
         </div>
     </div>
     <div class="row text-left" matchHeight="card">
-        <div class="col-lg-3 col-md-4" *ngFor="let order of orders">
+        <div class="col-12 mt-1 mb-1">UNCONFIRMED</div>
+        <div class="col-lg-3 col-md-4" *ngFor="let order of unconfirmedOrders">
             <div class="card">
                 <div class="card-header">
                     <div class="media">
@@ -83,7 +84,51 @@
                         <a routerLink="/inventory/orders/edit" [queryParams]="{id: order.id, type: 'order'}" class="card-link">Edit Order <i class="fa fa-angle-right"></i></a>
                     </span>
                     <span class="float-right" *ngIf="order.status === 'CONFIRMED'">
-                        <a [routerLink]="'/inventory/receipts/receive/'+order.id" class="card-link">Receive Order <i class="fa fa-angle-right"></i></a>
+                        <a [routerLink]="'/inventory/orders/receive/'+order.id" class="card-link">Receive Order <i class="fa fa-angle-right"></i></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-left" matchHeight="card">
+        <div class="col-12 mt-1 mb-1">CONFIRMED</div>
+        <div class="col-lg-3 col-md-4" *ngFor="let order of confirmedOrders">
+            <div class="card">
+                <div class="card-header">
+                    <div class="media">
+                        <div class="media-left align-self-center">
+                            <h4>#{{order.id | idPad: 'PO'}}</h4>
+                            <h6>{{order.supplier.name}}</h6>
+                        </div>
+                        <div class="media-body text-right">
+                            <h4>{{order.parts_count}}</h4>
+                            <span>Parts</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let part of order.part_summary">
+                                {{part.name}}
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a (click)="delete(order.id)" class="card-link">Delete</a>
+                            <span class="float-right">
+                                <a routerLink="/inventory/invoice" [queryParams]="{id: order.id, type: 'order'}"
+                                   class="card-link">View Invoice <i class="fa fa-angle-right"></i></a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="float-left">{{order.updated_at}}</span>
+                    <span class="float-right" *ngIf="order.status === 'UNCONFIRMED'">
+                        <a routerLink="/inventory/orders/edit" [queryParams]="{id: order.id, type: 'order'}" class="card-link">Edit Order <i class="fa fa-angle-right"></i></a>
+                    </span>
+                    <span class="float-right" *ngIf="order.status === 'CONFIRMED'">
+                        <a [routerLink]="'/inventory/orders/receive/'+order.id" class="card-link">Receive Order <i class="fa fa-angle-right"></i></a>
                     </span>
                 </div>
             </div>

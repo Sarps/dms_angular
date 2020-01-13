@@ -10,14 +10,17 @@ import {Router} from '@angular/router';
 
 export class OrdersComponent implements OnInit {
 
-    public orders: Array<any>;
+    public confirmedOrders: Array<any>;
+    public unconfirmedOrders: Array<any>;
 
     constructor(private apiService: ApiService, private router: Router) {
-        this.orders = [];
+        this.unconfirmedOrders = this.confirmedOrders = [];
     }
 
-    ngOnInit(): void {
-        this.apiService.getOrderList().then((resp: Array<any>) => this.orders = resp);
+    async ngOnInit() {
+        const resp = <Array<any>>await this.apiService.getOrderList();
+        this.unconfirmedOrders = resp.filter(o => o.status === 'UNCONFIRMED');
+        this.confirmedOrders = resp.filter(o => o.status === 'CONFIRMED');
     }
 
     async delete(id: number) {

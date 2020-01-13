@@ -1,8 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {MaintenancePageComponent} from '../content-layout-page/maintenance/maintenance-page.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {InvoicePageComponent} from './invoice/invoice-page.component';
+import {InvoicePageComponent} from './invoice-page.component';
 
 const routes: Routes = [
     {

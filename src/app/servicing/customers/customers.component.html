@@ -1,0 +1,70 @@
+<!--Extended Table starts-->
+<div class="row text-left">
+    <div class="col-12">
+        <div class="content-header">Customer List</div>
+        <p class="content-sub-header">List of all customers ordered by date added.</p>
+    </div>
+</div>
+<!--Shopping cart starts-->
+<section id="shopping-cart">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <table class="table table-responsive-md text-center">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Account Name</th>
+                                <th>Mobile</th>
+                                <th>Account Type</th>
+                                <th>Tax Type</th>
+                                <th>Percentage</th>
+                                <th>Status</th>
+                                <th>Stopped</th>
+                                <th>On Hold</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><a class="btn btn-success btn-raised" href="/servicing/customers/new">New Customer</a></td>
+                            </tr>
+                            <tr *ngFor="let customer of customers">
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.email}}</td>
+                                <td>GHS {{customer.account_name}}</td>
+                                <td>GHS {{customer.mobile}}</td>
+                                <td>GHS {{customer.account_type}}</td>
+                                <td>{{customer.tax_type}}</td>
+                                <td>{{customer.tax_perc}}</td>
+                                <td>{{customer.status}}</td>
+                                <td><ui-switch disabled [(ngModel)]="customer.stop_account"></ui-switch></td>
+                                <td><ui-switch disabled [(ngModel)]="customer.on_hold"></ui-switch></td>
+                                <td>
+                                    <a class="danger" data-original-title="" title="" (click)="delete(customer.id)">
+                                        <i class="ft-trash font-medium-3"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shopping cart ends-->
