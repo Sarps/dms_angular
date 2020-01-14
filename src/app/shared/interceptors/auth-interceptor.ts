@@ -19,14 +19,15 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         const user = this.auth.user;
+        console.log('headers');
         if (user && user.api_token) {
+            console.log(user.api_token);
             request = request.clone({
                 setHeaders: {Authorization: `Bearer ${user.api_token}`}
             });
         }
 
-        return next.handle(request).pipe(tap(() => {
-            },
+        return next.handle(request).pipe(tap(() => {},
             (err: any) => {
                 if (err instanceof HttpErrorResponse) {
                     if (err.status === 401) {

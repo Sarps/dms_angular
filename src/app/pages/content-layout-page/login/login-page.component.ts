@@ -33,8 +33,7 @@ export class LoginPageComponent {
             await this.router.navigate(['/home'], {relativeTo: this.route.parent});
         } catch (e) {
             console.error(e);
-            console.log('tostr');
-            this.toastr.error(e.statusText, 'Login Failed!');
+            this.toastr.error(e.error.message, 'Login Failed!');
         }
         this.loading = false;
     }
