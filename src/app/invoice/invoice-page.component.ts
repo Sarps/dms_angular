@@ -20,6 +20,7 @@ export class InvoicePageComponent implements OnInit {
     user: any;
     type: string;
     id: number;
+    printing: boolean;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService,
                 private router: Router, public auth: AuthGuard, private toastr: ToastrService) {
