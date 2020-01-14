@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-bordered',
@@ -20,7 +21,8 @@ export class ReceiveOrderComponent implements OnInit {
     orderId: number;
     savable = false;
 
-    constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) {
+    constructor(private apiService: ApiService, private router: Router,
+                private route: ActivatedRoute, private toastr: ToastrService) {
         this.parts = [];
     }
 
@@ -42,8 +44,10 @@ export class ReceiveOrderComponent implements OnInit {
                     return acc;
                 }, {})
             });
+            this.toastr.success('Order received');
             await this.router.navigate(['/inventory/receipts/list']);
         } catch (e) {
+            this.toastr.error('Couldn\'t receive order');
             console.error(e);
         }
     }
@@ -69,6 +73,7 @@ export class ReceiveOrderComponent implements OnInit {
                 this.supplierId = purchase.supplier.id;
             });
         } catch (e) {
+            this.toastr.error('Error loadign order details');
             console.error(e);
         }
     }

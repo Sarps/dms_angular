@@ -49,6 +49,7 @@ export class AddVehicleComponent implements OnInit {
             this.toastr.success(`Vehicle with Reg: <b>${this.vehicle.reg_no}</b> added to customer`, 'Saved', {enableHtml: true});
             this.vehicle = {};
         } catch (e) {
+            this.toastr.error('Couldn\'t Save');
             console.error(e);
         }
     }

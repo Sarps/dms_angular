@@ -151,4 +151,8 @@ export class ApiService {
     async addVehicle(data: FormData) {
         return this._http.post(`${this.baseUrl}/vehicles`, data).toPromise();
     }
+
+    getCustomerVehicles(id: number) {
+        return this._http.get(`${this.baseUrl}/vehicles/customer/${id}`).toPromise();
+    }
 }

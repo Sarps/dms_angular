@@ -7,7 +7,7 @@ import {AddCustomerComponent} from './add-customer/add-customer.component';
 import {ServicingRoutingModule} from './servicing-routing.module';
 import {OrdersComponent} from './orders/orders.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {UiSwitchModule} from 'ngx-ui-switch';
 import {CustomersComponent} from './customers/customers.component';
 import {NgSelectModule} from '@ng-select/ng-select';
@@ -28,7 +28,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
         ServicingRoutingModule,
         NgbDatepickerModule,
         UiSwitchModule,
-        NgSelectModule
+        NgSelectModule,
+        NgbTimepickerModule
     ]
 })
 export class ServicingModule {

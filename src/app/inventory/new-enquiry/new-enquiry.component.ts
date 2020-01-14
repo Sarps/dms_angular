@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-bordered',
@@ -19,7 +20,8 @@ export class NewEnquiryComponent implements OnInit {
     editMode: boolean;
     dueDate: any;
 
-    constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) {
+    constructor(private apiService: ApiService, private router: Router,
+                private route: ActivatedRoute, private toastr: ToastrService) {
         this.parts = [];
         this.editMode = this.router.url.indexOf('/edit') > -1;
     }
@@ -73,10 +75,11 @@ export class NewEnquiryComponent implements OnInit {
                     await this.router.navigate(['/inventory/orders/list']);
                     break;
                 default:
-                    alert('You need to select a purchase type');
+                    this.toastr.error('You need to select a purchase type');
                     break;
             }
         } catch (e) {
+            this.toastr.error(e.statusText, 'Not Saved');
             console.error(e);
         }
     }

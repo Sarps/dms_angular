@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ServerDataSource} from 'ng2-smart-table';
 import {ApiService} from '../../shared/services/api.service';
 import {environment} from '../../../environments/environment';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-supplier',
@@ -14,7 +15,7 @@ export class SupplierComponent implements OnInit {
     settings: any;
     endPoint: string;
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService, private toastr: ToastrService) {
         this.source = new ServerDataSource(apiService._http, {
             endPoint: `${environment.apiUrl}/suppliers/dt`,
             pagerPageKey: 'page',
@@ -73,7 +74,7 @@ export class SupplierComponent implements OnInit {
             await this.apiService.deleteSupplier(event.data.id);
             await event.confirm.resolve();
         } catch (e) {
-            window.alert('Couldn\'t delete!!!');
+            this.toastr.error('Couldn\'t delete!!!');
             await event.confirm.reject();
         }
     }
@@ -83,7 +84,7 @@ export class SupplierComponent implements OnInit {
             await this.apiService.updateSupplier(event.data.id, event.newData);
             await event.confirm.resolve();
         } catch (e) {
-            window.alert('Error updating!!!');
+            this.toastr.error('Error updating!!!');
             await event.confirm.reject();
         }
     }
@@ -94,7 +95,7 @@ export class SupplierComponent implements OnInit {
             await this.apiService.addSupplier(event.newData);
             await event.confirm.resolve();
         } catch (e) {
-            window.alert('Failed');
+            this.toastr.error('Couldn\'t create');
             await event.confirm.reject();
         }
     }

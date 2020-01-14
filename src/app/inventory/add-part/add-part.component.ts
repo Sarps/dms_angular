@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../shared/services/api.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-bordered',
@@ -19,7 +20,8 @@ export class AddPartComponent implements OnInit {
     public priceInc: number;
     public priceExc: number;
 
-    constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
+    constructor(private apiService: ApiService, private formBuilder: FormBuilder,
+                private router: Router, private toastr: ToastrService) {
         this.suppliers = [];
         this.part = {
             'number': '',
@@ -46,7 +48,9 @@ export class AddPartComponent implements OnInit {
         try {
             await this.apiService.addPart(formData);
             await this.router.navigate(['/inventory/list']);
+            this.toastr.success('Successfully persisted', 'Not Saved');
         } catch (e) {
+            this.toastr.error(e.statusText, 'Not Saved');
             console.error(e);
         }
     }

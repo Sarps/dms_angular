@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-inventory-maintenance',
@@ -12,7 +13,7 @@ export class CustomersComponent implements OnInit {
 
     public customers: Array<any>;
 
-    constructor(private apiService: ApiService, private router: Router) {
+    constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService) {
         this.customers = [];
     }
 
@@ -22,7 +23,12 @@ export class CustomersComponent implements OnInit {
     }
 
     async delete(id: number) {
-        await this.apiService.deleteCustomer(id);
-        await this.router.navigate(['/trash']);
+        try {
+            await this.apiService.deleteCustomer(id);
+            this.toastr.success('Deleted');
+            await this.router.navigate(['/trash']);
+        } catch (e) {
+            this.toastr.error('Item not deleted');
+        }
     }
 }

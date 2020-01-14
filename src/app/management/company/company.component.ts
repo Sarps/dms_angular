@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {environment} from '../../../environments/environment';
 import {ServerDataSource} from 'ng2-smart-table';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-company',
@@ -14,7 +15,7 @@ export class CompanyComponent implements OnInit {
     settings: any;
     endPoint: string;
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService, private toastr: ToastrService) {
         this.source = new ServerDataSource(apiService._http, {
             endPoint: `${environment.apiUrl}/companies/dt`,
             pagerPageKey: 'page',
@@ -72,9 +73,10 @@ export class CompanyComponent implements OnInit {
                 return await event.confirm.reject();
             }
             await this.apiService.deleteCompany(event.data.id);
+            this.toastr.info('Deleted');
             await event.confirm.resolve();
         } catch (e) {
-            window.alert('Couldn\'t delete!!!');
+            this.toastr.error('Couldn\'t delete!!!');
             await event.confirm.reject();
         }
     }
@@ -84,7 +86,7 @@ export class CompanyComponent implements OnInit {
             await this.apiService.updateCompany(event.data.id, event.newData);
             await event.confirm.resolve();
         } catch (e) {
-            window.alert('Error updating!!!');
+            this.toastr.error('Error updating!!!');
             await event.confirm.reject();
         }
     }
@@ -95,7 +97,7 @@ export class CompanyComponent implements OnInit {
             await this.apiService.addCompany(event.newData);
             await event.confirm.resolve();
         } catch (e) {
-            window.alert('Failed');
+            this.toastr.error('Couldn\'t Create');
             await event.confirm.reject();
         }
     }

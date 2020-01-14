@@ -156,3 +156,17 @@ h
 +src/app/invoice/invoice-page.component.html,0/2/02025b60e5ae95efd2ce08d6b619eeb468219913
 k
 ;src/app/pages/content-layout-page/invoice-page.component.ts,d/f/df3186ab95be05ed24963d5d5088a6313a26eb2c
+o
+?src/app/financials/purchase-ledger/purchase-ledger.component.ts,5/6/561dc889e822f8b56818e637f36f37e02cfc0a9a
+_
+/src/app/financials/financials-routing.module.ts,5/6/5679acaf205fd5b9a752572679b4f8e58735dae0
+W
+'src/app/financials/financials.module.ts,9/e/9e1155232c4d6136bd1a749d3a8d3569b85ee1e3
+i
+9src/app/financials/sales-ledger/sales-ledger.component.ts,5/3/53478be135046c8b74e2253f0ca08794f217bfb9
+q
+Asrc/app/financials/purchase-ledger/purchase-ledger.component.html,6/7/67d88ec53f3ed661b293ab7f21cb44adaf914c00
+k
+;src/app/financials/sales-ledger/sales-ledger.component.html,d/8/d8d20fbb9ba1c3ed222fa200d7cfb167b4222d76
+d
+4src/app/servicing/add-order/add-order.component.html,e/6/e6589b29321dff162e569fbcc84b6d02bfd395bd

@@ -5,168 +5,270 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header pb-2">
-                    <h4 class="card-title" id="bordered-layout-colored-controls">ADD NEW PART</h4>
+                    <h4 class="card-title" id="bordered-layout-colored-controls">NEW SERVICE CENTER</h4>
                 </div>
                 <div class="card-content">
                     <div class="px-3">
                         <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit($event)" id="add-part-form">
                             <div class="form-body">
-                                <h4 class="form-section"><i class="ft-info"></i> General Info</h4>
+                                <h4 class="form-section"><i class="ft-info"></i> Vehicle Data</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="number">Part No.</label>
+                                            <label class="col-md-3 label-control" for="customer_name">Customer</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="number" class="form-control border-primary"
-                                                       placeholder="Part No" name="number" [(ngModel)]="part.number">
+                                                <ng-select [items]="customers" bindLabel="name" bindValue="id" id="customer_name" (ngModelChange)="loadVehicle($event)"
+                                                           placeholder="Select Customer" name="customer_id" [(ngModel)]="vehicle.customer_id">
+                                                    <ng-template ng-label-tmp let-item="item">
+                                                        <b class="mx-1">{{item.name}}</b> @{{item.email}}
+                                                    </ng-template>
+                                                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                        <div class="my-2 mx-2">
+                                                            <b class="my-1">{{item.name}}</b> @<span>{{item.email}}</span>
+                                                            <br>
+                                                            <span><i class="fa fa-address-card-o mr-1"></i>{{item.address}}</span> <span><i class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
+                                                        </div>
+                                                    </ng-template>
+                                                </ng-select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="retail_price">Retail
-                                                Price(Exc)</label>
+                                            <label class="col-md-3 label-control" for="vehicle_id">Vehicle</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="retail_price"
-                                                       class="form-control border-primary" (keyup)="calculate(true)"
-                                                       placeholder="Amount" name="retail_price" [(ngModel)]="priceExc">
+                                                <ng-select [items]="vehicles" bindLabel="name" bindValue="id" id="vehicle_id"
+                                                           placeholder="Select Vehicle" name="customer_id" [(ngModel)]="order.vehicle_id">
+                                                    <ng-template ng-label-tmp let-item="item">
+                                                        <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b> <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
+                                                    </ng-template>
+                                                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                        <div class="my-2 mx-2">
+                                                            <b class="my-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
+                                                            <br>
+                                                            <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
+                                                        </div>
+                                                    </ng-template>
+                                                </ng-select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <h4 class="form-section"><i class="ft-info"></i> Job Request Info</h4>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="name">Part Name</label>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_type">Job Type</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="name" class="form-control border-primary"
-                                                       placeholder="Part Name" name="name" [(ngModel)]="part.name">
+                                                <select id="job_type" name="job_type" class="form-control">
+                                                    <option value="none" selected="" disabled="">Job Type</option>
+                                                </select>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="intake">Intake</label>
+                                            <div class="col-md-9">
+                                                <select id="intake" name="intake" class="form-control"
+                                                        [(ngModel)]="order.intake">
+                                                    <option value="none" selected="" disabled="">Intake</option>
+                                                    <option value="appointment">By Appointment</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="warranty">Warranty</label>
+                                            <div class="col-md-9">
+                                                <ui-switch [(ngModel)]="order.warranty" id="warranty"></ui-switch>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="repeat">Repeat Repair</label>
+                                            <div class="col-md-9">
+                                                <ui-switch [(ngModel)]="order.repeat" id="repeat"></ui-switch>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="internal">Internal Job</label>
+                                            <div class="col-md-9">
+                                                <ui-switch [(ngModel)]="order.internal" id="internal"></ui-switch>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_time">Estimated Job Time</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="job_time" class="form-control border-primary"
+                                                       placeholder="Job Time" name="job_time" [(ngModel)]="order.job_time">
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="price_inc">Retail
-                                                Price(Inc)</label>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_type">Payment Type</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="price_inc"
-                                                       class="form-control border-primary" (keyup)="calculate(false)"
-                                                       placeholder="Amount" name="price_inc" [(ngModel)]="priceInc">
+                                                <select id="payment_type" name="job_type" class="form-control">
+                                                    <option value="none" selected="" disabled="">Payment Type</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mt-2">
+                                            <label class="col-md-3 label-control" for="notes">Request Details</label>
+                                            <div class="col-md-9 offset-md-3">
+                                                <textarea id="notes" class="form-control border-primary"
+                                                          name="note" rows="12" placeholder=""></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <h4 class="form-section"><i class="ft-info"></i> Appointment &amp; Confirmation</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="supplier">Supplier</label>
+                                            <label class="col-md-3 label-control" for="appt_date">Appt. Date</label>
                                             <div class="col-md-9">
-                                                <select id="supplier" name="supplier_id" class="form-control" [(ngModel)]="part.supplier_id">
-                                                    <option value="none" selected disabled>Supplied By</option>
-                                                    <option [value]="supplier.id" *ngFor="let supplier of suppliers">{{supplier.name}}</option>
-                                                </select>
+                                                <div class="input-group">
+                                                    <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
+                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker #d2="ngbDatepicker">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text" (click)="d2.toggle()">
+                                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_time">Appt By</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="appt_by" class="form-control border-primary"
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="confirmed">Confirmed</label>
+                                            <div class="col-md-9">
+                                                <ui-switch [(ngModel)]="order.confirmed" id="confirmed"></ui-switch>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="cost_price">Cost Price</label>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="appt_time">Appt. Time</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="cost_price"
-                                                       class="form-control border-primary"
-                                                       placeholder="Amount" name="cost_price" [(ngModel)]="part.cost_price">
+                                                <ngb-timepicker [(ngModel)]="order.appt_time" [meridian]="true"
+                                                                id="appt_time" [spinners]="false"></ngb-timepicker>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_time">Resch</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="resch" class="form-control border-primary"
+                                                       placeholder="Resch" name="resch" [(ngModel)]="order.resch">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_time">Appt By</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="appt_by" class="form-control border-primary"
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-
-                                <h4 class="form-section"><i class="ft-mail"></i> Specifics</h4>
-
+                                <h4 class="form-section"><i class="ft-info"></i> Customer Reception &amp; Delivery</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="category">Category</label>
+                                            <label class="col-md-3 label-control" for="appt_date">Reception Date</label>
                                             <div class="col-md-9">
-                                                <select id="category" name="category_id" class="form-control" [(ngModel)]="part.category_id">
-                                                    <option value="none" selected disabled>Category</option>
-                                                    <option [value]="category.id" *ngFor="let category of categories">{{category.name}}</option>
-                                                </select>
+                                                <div class="input-group">
+                                                    <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
+                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker #d2="ngbDatepicker">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text" (click)="d2.toggle()">
+                                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="unit">Measurement Unit</label>
+                                            <label class="col-md-3 label-control" for="appt_time">Reception Time</label>
                                             <div class="col-md-9">
-                                                <select id="unit" name="interested" class="form-control">
-                                                    <option value="none" selected="" disabled="">Unit</option>
-                                                </select>
+                                                <ngb-timepicker [(ngModel)]="order.appt_time" [meridian]="true"
+                                                                id="appt_time" [spinners]="false"></ngb-timepicker>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="manufacturer">Manufacturer</label>
+                                            <label class="col-md-3 label-control" for="job_time">Odometer Unit In</label>
                                             <div class="col-md-9">
-                                                <select id="manufacturer" name="manufacturer_id" class="form-control" [(ngModel)]="part.manufacturer_id">
-                                                    <option value="none" selected="" disabled="">Manufacturer</option>
-                                                    <option [value]="manufacturer.id" *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
-                                                </select>
+                                                <input type="text" id="appt_by" class="form-control border-primary"
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="model">Model</label>
+                                            <label class="col-md-3 label-control" for="job_time">Received By</label>
                                             <div class="col-md-9">
-                                                <select id="model" name="model_id" class="form-control" [(ngModel)]="part.model_id">
-                                                    <option value="none" selected="" disabled="">Model</option>
-                                                    <option [value]="model.id" *ngFor="let model of models | keyFilter: 'manufacturer_id':  +part.manufacturer_id">{{model.name}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="franchise">Franchise</label>
-                                            <div class="col-md-9">
-                                                <select id="franchise" name="franchise_id" class="form-control" [(ngModel)]="part.franchise_id">
-                                                    <option value="none" selected="" disabled="">Franchise</option>
-                                                </select>
+                                                <input type="text" id="appt_by" class="form-control border-primary"
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="initialqty">Initial Qty.</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="initialqty" class="form-control border-primary"
-                                                       placeholder="Initial Qty" name="quantity" [(ngModel)]="part.quantity">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="reorder">Reorder Point</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="reorder" class="form-control border-primary"
-                                                       placeholder="Reorder Point" name="reorder" [(ngModel)]="part.reorder">
-                                            </div>
 
-                                        </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control">Select File</label>
+                                            <label class="col-md-3 label-control" for="appt_date">Delivery Date</label>
                                             <div class="col-md-9">
-                                                <label id="image" class="file  mx-auto">
-                                                    <input type="file" id="file" (change)="onFileSelect($event)" name="image">
-                                                    <span class="file-custom"></span>
-                                                </label>
+                                                <div class="input-group">
+                                                    <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
+                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker #d2="ngbDatepicker">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text" (click)="d2.toggle()">
+                                                            <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group row last">
-                                            <label class="col-md-3 label-control" for="description">Part
-                                                Description</label>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="appt_time">Delivery Time</label>
                                             <div class="col-md-9">
-                                                <textarea id="description" class="form-control col-md-9 border-primary"
-                                                          name="description" rows="6" placeholder="Part Description"
-                                                >No description</textarea>
+                                                <ngb-timepicker [(ngModel)]="order.appt_time" [meridian]="true"
+                                                                id="appt_time" [spinners]="false"></ngb-timepicker>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_time">Odometer Unit Out</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="appt_by" class="form-control border-primary"
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="job_time">Delivered By</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="appt_by" class="form-control border-primary"
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

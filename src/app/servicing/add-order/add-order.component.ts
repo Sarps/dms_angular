@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../shared/services/api.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-bordered',
@@ -9,19 +10,15 @@ import {Router} from '@angular/router';
     styleUrls: ['./add-order.component.scss']
 })
 export class AddOrderComponent implements OnInit {
-    public part: any;
-    public suppliers: Array<any> = [];
-    public categories: Array<any> = [];
-    public manufacturers: Array<any> = [];
-    public models: Array<any> = [];
-    public file: any;
+    public vehicle: any;
+    public vehicles: Array<any> = [];
+    public customers: Array<any> = [];
+    public order: any;
 
-    public priceInc: number;
-    public priceExc: number;
-
-    constructor(private apiService: ApiService, private formBuilder: FormBuilder, private router: Router) {
-        this.suppliers = [];
-        this.part = {
+    constructor(private apiService: ApiService, private formBuilder: FormBuilder,
+                private router: Router, private toastr: ToastrService) {
+        this.order = {};
+        this.vehicle = {
             'number': '',
             'name': '',
             'retail_price': 0.0,
@@ -34,10 +31,7 @@ export class AddOrderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.apiService.getSupplierList().then((resp: Array<any>) => this.suppliers = resp);
-        this.apiService.getManufacturerList().then((resp: Array<any>) => this.manufacturers = resp);
-        this.apiService.getModelList().then((resp: Array<any>) => this.models = resp);
-        this.apiService.getCategories().then((resp: Array<any>) => this.categories = resp);
+        this.apiService.getCustomerList().then((resp: Array<any>) => this.customers = resp);
     }
 
     async onSubmit(event) {
@@ -45,23 +39,18 @@ export class AddOrderComponent implements OnInit {
         const formData = new FormData(event.target);
         try {
             await this.apiService.addPart(formData);
+            this.toastr.success('Saved succesfully');
             await this.router.navigate(['/inventory/list']);
         } catch (e) {
+            this.toastr.error(e.error.message, 'Not Saved');
             console.error(e);
         }
     }
 
-    onFileSelect(event) {
-        if (event.target.files.length > 0) {
-            this.file = event.target.files[0];
+    loadVehicle($event: number) {
+        if ($event === null) {
+            return;
         }
-    }
-
-    calculate(isBackwards: boolean) {
-        if (!isBackwards) {
-            this.priceExc = +this.priceInc / 1.03;
-        } else {
-            this.priceInc = +this.priceExc * 1.03;
-        }
+        this.apiService.getCustomerVehicles($event).then((resp: Array<any>) => this.vehicles = resp);
     }
 }

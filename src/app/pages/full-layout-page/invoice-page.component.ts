@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../shared/services/api.service';
 import {AuthGuard} from '../../shared/auth/auth-guard.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-invoice-page',
@@ -22,7 +23,7 @@ export class InvoicePageComponent implements OnInit {
     printing = false;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService,
-                private router: Router, public auth: AuthGuard) {
+                private router: Router, public auth: AuthGuard, private toastr: ToastrService) {
 
     }
 
@@ -55,12 +56,18 @@ export class InvoicePageComponent implements OnInit {
                 this.tax = this.subTotal * 0.03;
             });
         } catch (e) {
+            this.toastr.error('Error loading invoice details');
             console.error(e);
         }
     }
 
     async confirmOrder() {
-        await this.apiService.confirmOrder(this.id);
-        this.purchase.status = 'CONFIRMED';
+        try {
+            await this.apiService.confirmOrder(this.id);
+            this.purchase.status = 'CONFIRMED';
+            this.toastr.success('Order confirmed');
+        } catch (e) {
+            this.toastr.error('Error confirming order');
+        }
     }
 }

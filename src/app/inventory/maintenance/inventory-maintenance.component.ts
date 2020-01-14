@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-inventory-maintenance',
@@ -12,7 +13,7 @@ export class InventoryMaintenanceComponent implements OnInit {
 
     public parts: Array<any>;
 
-    constructor(private apiService: ApiService, private router: Router) {
+    constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService) {
         this.parts = [];
     }
 
@@ -22,6 +23,7 @@ export class InventoryMaintenanceComponent implements OnInit {
 
     async delete(id: number) {
         await this.apiService.deletePart(id);
+        this.toastr.info('Deleted');
         await this.router.navigate(['/trash']);
     }
 }

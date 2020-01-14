@@ -28,7 +28,7 @@ const routes: Routes = [
         data: { title: 'Orders' },
     },
     {
-        path: 'orders/new',
+        path: 'orders/add',
         component: AddOrderComponent,
         data: { title: 'New Purchase' },
     },
