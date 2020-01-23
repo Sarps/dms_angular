@@ -5,13 +5,27 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {ManagementRoutingModule} from './management-routing.module';
 import { ManufacturerComponent } from './manufacturer/manufacturer.component';
 import { CompanyComponent } from './company/company.component';
+import {CompanyInformationComponent} from './company-information/company-information.component';
+import {FormsModule} from '@angular/forms';
+import {PipesModule} from '../shared/pipes/pipes.module';
+import {UserPrivilegesComponent} from './user-privileges/user-privileges.component';
+import {DocumentsMarginsComponent} from './documents-margins/documents-margins.component';
 
 @NgModule({
-    declarations: [SupplierComponent, ManufacturerComponent, CompanyComponent],
+    declarations: [
+        SupplierComponent,
+        ManufacturerComponent,
+        CompanyComponent,
+        CompanyInformationComponent,
+        UserPrivilegesComponent,
+        DocumentsMarginsComponent
+    ],
     imports: [
         CommonModule,
         Ng2SmartTableModule,
-        ManagementRoutingModule
+        ManagementRoutingModule,
+        FormsModule,
+        PipesModule
     ]
 })
 export class ManagementModule {

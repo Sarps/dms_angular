@@ -6,10 +6,10 @@ import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-supplier',
-    templateUrl: './supplier.component.html',
-    styleUrls: ['./supplier.component.scss']
+    templateUrl: './user-privileges.component.html',
+    styleUrls: ['./user-privileges.component.scss']
 })
-export class SupplierComponent implements OnInit {
+export class UserPrivilegesComponent implements OnInit {
 
     source: any;
     settings: any;
@@ -25,9 +25,13 @@ export class SupplierComponent implements OnInit {
         });
         this.settings = {
             columns: {
-                name: {title: 'Supplier Name', filter: false},
-                address: {title: 'Address Line', filter: false},
-                contact: {title: 'Contact Number', filter: false}
+                email: {title: 'Email', filter: false},
+                password: {title: 'Password', filter: false},
+                inventory: {title: 'Inventory', filter: false},
+                service: {title: 'Service', filter: false},
+                financials: {title: 'Financials', filter: false},
+                management: {title: 'Management Controls', filter: false},
+                disenable: {title: 'Dis Enable', filter: false},
             },
             attr: {
                 class: 'table table-responsive'
@@ -71,7 +75,7 @@ export class SupplierComponent implements OnInit {
             if (!status) {
                 return await event.confirm.reject();
             }
-            await this.apiService.deleteSupplier(event.data.id);
+            // await this.apiService.deleteSupplier(event.data.id);
             await event.confirm.resolve();
         } catch (e) {
             this.toastr.error('Couldn\'t delete!!!');
@@ -81,7 +85,7 @@ export class SupplierComponent implements OnInit {
 
     async onSaveConfirm(event) {
         try {
-            await this.apiService.updateSupplier(event.data.id, event.newData);
+            // await this.apiService.updateSupplier(event.data.id, event.newData);
             await event.confirm.resolve();
         } catch (e) {
             this.toastr.error('Error updating!!!');
@@ -92,10 +96,10 @@ export class SupplierComponent implements OnInit {
     async onCreateConfirm(event) {
         console.log(event);
         try {
-            await this.apiService.addSupplier(event.newData);
+            // await this.apiService.addSupplier(event.newData);
             await event.confirm.resolve();
         } catch (e) {
-            this.toastr.error(e.error.message, 'Couldn\'t create');
+            this.toastr.error('Couldn\'t create', e.error.message);
             await event.confirm.reject();
         }
     }

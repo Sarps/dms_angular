@@ -31,11 +31,21 @@ export const ROUTES: RouteInfo[] = [
             { path: '/financials/sales', title: 'Sales Ledger', icon: 'ft-server', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/purchase', title: 'Purchase Ledger', icon: 'ft-cast', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/general', title: 'General Ledger', icon: 'ft-toggle-left', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/financials/payment/new', title: 'Make Payment', icon: 'fa fa-money', class: '', badge: '', badgeClass: '', submenu: [] },
         ]
     },
     {
         path: '', title: 'Management', icon: 'ft-users', class: 'has-sub', badge: '', badgeClass: '', submenu: [
             // { path: '/management/companies', title: 'Companies', icon: 'ft-layout', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/management/users', title: 'Users & Privileges', icon: 'ft-user-plus', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/management/documents', title: 'Documents & Margins', icon: 'ft-align-left', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/maintenance', title: 'Part Order Approvals', icon: 'ft-check-circle', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/maintenance', title: 'Part Sales Figures', icon: 'ft-airplay', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/maintenance', title: 'Service Intake', icon: 'ft-clipboard', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/maintenance', title: 'Service Sale Figures', icon: 'ft-file-text', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/maintenance', title: 'Periodic Profit & Loss', icon: 'ft-pie-chart', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/management/company/edit', title: 'Company Information', icon: 'ft-slack', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/maintenance', title: 'Sales Group Setup', icon: 'ft-upload-cloud', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/management/suppliers', title: 'Suppliers', icon: 'ft-wind', class: '', badge: '', badgeClass: '', submenu: [] },
         ]
     },

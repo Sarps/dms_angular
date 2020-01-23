@@ -1,0 +1,163 @@
+<!-- Basic form layout section start -->
+<section id="basic-form-layouts">
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header pb-2">
+                    <h4 class="card-title" id="bordered-layout-colored-controls">Edit Company Info</h4>
+                </div>
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit($event)" id="add-part-form">
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="ft-info"></i> General Info</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Company Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="name" class="form-control border-primary"
+                                                       placeholder="Company Name" name="name" [(ngModel)]="company.name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Motto</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="motto" class="form-control border-primary"
+                                                       placeholder="Motto" name="motto" [(ngModel)]="company.motto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="address">Address</label>
+                                            <div class="col-md-9">
+                                                <textarea id="address" class="form-control border-primary"
+                                                          name="address" rows="6" placeholder="Address">
+                                                    </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="mission">Mission</label>
+                                            <div class="col-md-9">
+                                                <textarea id="mission" class="form-control border-primary"
+                                                          name="mission" rows="6" placeholder="Mission"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="logo">Logo</label>
+                                            <div class="col-md-9">
+                                                <label for="logo" class="file mx-auto">
+                                                    <input type="file" id="logo" name="logo">
+                                                    <span class="file-custom"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="logo"> Old Logo</label>
+                                            <div class="col-md-9">
+                                                <img [src]="company.imageUrl">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h4 class="form-section"><i class="ft-mail"></i> Specifics</h4>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Website</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="website" class="form-control border-primary"
+                                                       placeholder="Website" name="website" [(ngModel)]="company.website">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">VAT Number</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="vat" class="form-control border-primary"
+                                                       placeholder="VAT Number" name="vat" [(ngModel)]="company.vat">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Email</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="email" class="form-control border-primary"
+                                                       placeholder="Email" name="email" [(ngModel)]="company.email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Fax Number</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="fax" class="form-control border-primary"
+                                                       placeholder="Fax Number" name="vat" [(ngModel)]="company.fax">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Telephone</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="telephone" class="form-control border-primary"
+                                                       placeholder="Telephone" name="telephone" [(ngModel)]="company.telephone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Mobile Number</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="mobile" class="form-control border-primary"
+                                                       placeholder="Mobile Number" name="vat" [(ngModel)]="company.mobile">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="reset" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Clear Forms
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Save
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- // Basic form layout section end -->

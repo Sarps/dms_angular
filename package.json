@@ -2,6 +2,7 @@
   "name": "apex",
   "version": "8.0.0",
   "license": "",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "proxy": "ng serve",
@@ -9,7 +10,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron:start": "ng build --base-href ./ && electron ."
   },
   "private": true,
   "dependencies": {
@@ -45,7 +47,7 @@
     "ngx-perfect-scrollbar": "7.2.1",
     "ngx-toastr": "10.0.4",
     "ngx-ui-switch": "8.0.1",
-    "node-sass": "4.12.0",
+    "node-sass": "^4.13.1",
     "prismjs": "1.16.0",
     "resize-observer-polyfill": "1.5.1",
     "rxjs": "6.5.2",
@@ -56,13 +58,14 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.800.0",
+    "@angular-devkit/build-angular": "^0.803.23",
     "@angular/cli": "8.0.0",
     "@angular/compiler-cli": "8.0.0",
     "@angular/language-service": "8.0.0",
     "@types/jasmine": "3.3.13",
     "@types/node": "12.0.3",
     "codelyzer": "^5.0.1",
+    "electron": "^7.1.9",
     "jasmine-core": "3.4.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.1.0",

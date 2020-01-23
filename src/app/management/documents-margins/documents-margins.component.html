@@ -1,0 +1,249 @@
+<!--Advanced filter Starts-->
+<section id="advanced">
+    <div class="row text-left">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header pb-2">
+                    <h4 class="card-title" id="bordered-layout-colored-controls">DOCUMENT LABEL</h4>
+                </div>
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form form-horizontal form-bordered"
+                              id="add-part-form">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="parts_invoice">Parts Invoice</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="parts_invoice" class="form-control border-primary"
+                                                       placeholder="Parts Invoce" name="parts_invoice"
+                                                       [(ngModel)]="part.parts_invoice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="parts_order">Parts Order</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="parts_order" class="form-control border-primary"
+                                                       placeholder="Parts Order" name="parts_order"
+                                                       [(ngModel)]="part.parts_order">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="parts_quote">Parts Quote</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="parts_quote" class="form-control border-primary"
+                                                       placeholder="Parts Quote" name="parts_quote"
+                                                       [(ngModel)]="part.parts_quote">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="parts_credit_note">Parts Credit Note</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="parts_credit_note" class="form-control border-primary"
+                                                       placeholder="Parts Credit Note" name="parts_credit_note" [(ngModel)]="part.parts_credit_note">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="parts_picking_slip">Parts Picking Slip</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="parts_picking_slip" class="form-control border-primary"
+                                                       placeholder="Parts Picking Slip" name="parts_picking_slip"
+                                                       [(ngModel)]="part.parts_picking_slip">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="name">Customer Name</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="name" class="form-control border-primary"
+                                                       placeholder="Customer Name" name="name"
+                                                       [(ngModel)]="part.name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="service_invoice">Service Invoice</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="service_invoice" class="form-control border-primary"
+                                                       placeholder="Service Invoice" name="service_invoice"
+                                                       [(ngModel)]="part.service_invoice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 label-control" for="service_credit_note">Service Credit Note</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="service_credit_note" class="form-control border-primary"
+                                                       placeholder="Service Credit Note" name="service_credit_note"
+                                                       [(ngModel)]="part.service_credit_note">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="service_quote">Service Quote</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="service_quote" class="form-control border-primary"
+                                                       placeholder="Service Quote" name="service_quote" [(ngModel)]="part.service_quote">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row last">
+                                            <label class="col-md-3 label-control" for="parts_margin">Parts Margin</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="parts_margin" class="form-control border-primary"
+                                                       placeholder="Parts Margin" name="parts_margin"
+                                                       [(ngModel)]="part.parts_margin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn btn-raised btn-warning mr-1">
+                                    <i class="ft-x"></i> Cancel
+                                </button>
+                                <button type="submit" class="btn btn-raised btn-primary">
+                                    <i class="fa fa-check-square-o"></i> Save
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">TAX TYPE</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: taxTypeCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">ACCOUNTS TYPE</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: taxTypeCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">VEHICLE MAKE</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: vehicleMakeCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">ORDER TYPES</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: orderTypeCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">SALES MAN</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: taxTypeCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">MEASUREMENT UNIT</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: measurementCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">JOURNAL TYPE</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <input #search class="search mb-2" type="text" placeholder="Search..."
+                                   (keydown.enter)="onSearch(search.value)">
+                            <ng2-smart-table [settings]="defaults | mergeColumn: journalCols" [source]="source"
+                                             (deleteConfirm)="onDeleteConfirm($event)"
+                                             (editConfirm)="onSaveConfirm($event)"
+                                             (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Advanced filter Ends-->

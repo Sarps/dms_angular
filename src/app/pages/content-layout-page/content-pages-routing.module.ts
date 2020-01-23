@@ -11,7 +11,7 @@ import {AuthGuard} from '../../shared/auth/auth-guard.service';
 
 const routes: Routes = [
     {
-        path: 'customers',
+        path: 'maintenance',
         component: MaintenancePageComponent,
         data: { title: 'Under Maintenance' },
     },
