@@ -57,6 +57,6 @@ export class ServiceCenterComponent implements OnInit {
     }
 
     openCosting() {
-        this.modalService.open(ServiceCostingComponent, {size: 'xl', centered: true});
+        this.modalService.open(ServiceCostingComponent, {size: <any>'xl', centered: true});
     }
 }
