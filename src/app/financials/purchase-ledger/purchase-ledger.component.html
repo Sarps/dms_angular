@@ -5,6 +5,7 @@
         <p class="content-sub-header">Summary of all customers and their transactions.</p>
     </div>
 </div>
+
 <!--Shopping cart starts-->
 <section id="shopping-cart">
     <div class="row text-left">
@@ -16,13 +17,13 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Account Name</th>
-                                <th>Credit Limit</th>
-                                <th>Available Credit</th>
-                                <th>Credit Balance</th>
-                                <th>Current</th>
+                                <th>Address</th>
+                                <th>Contact</th>
+                                <th>Purchase Orders</th>
+                                <th>Received</th>
+                                <th align="right">Available Credit</th>
+                                <th align="right">Credit Balance</th>
                                 <th>30 Days+</th>
-                                <th>60 Days+</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -36,19 +37,22 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><a class="btn btn-success btn-raised" href="/servicing/customers/new">New Customer</a></td>
+                                <td><a class="btn btn-success btn-raised" href="/servicing/customers/new">New Supplier</a></td>
                             </tr>
-                            <tr *ngFor="let customer of customers">
-                                <td>{{customer.name}}</td>
-                                <td>GHS {{customer.account_name}}</td>
-                                <td>GHS {{customer.credit_limit}}</td>
-                                <td>GHS {{customer.credit_limit}}</td>
-                                <td>GHS 0</td>
-                                <td></td>
-                                <td></td>
+                            <tr *ngFor="let supplier of suppliers">
+                                <td>{{supplier.name}}</td>
+                                <td>{{supplier.address}}</td>
+                                <td align="right">{{supplier.contact}}</td>
+                                <td align="right">{{supplier.orders_count}}</td>
+                                <td align="right">{{supplier.receipts_count}}</td>
+                                <td align="right">{{supplier.total | currency : 'GHS '}}</td>
+                                <td align="right">GHS {{0 | currency: 'GHS '}}</td>
                                 <td></td>
                                 <td>
-                                    <a class="danger" data-original-title="" title="" (click)="delete(customer.id)">
+                                    <a class="info mx-2" title="View Details" disabled="supplier.total" [class.unlinkable]="!supplier.total" (click)="view(supplier)">
+                                        <i class="ft-eye font-medium-3"></i>
+                                    </a>
+                                    <a class="danger mx-2" title="Delete Supplier" (click)="delete(supplier.id)">
                                         <i class="ft-trash font-medium-3"></i>
                                     </a>
                                 </td>

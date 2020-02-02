@@ -6,10 +6,10 @@ import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-bordered',
-    templateUrl: './new-enquiry.component.html',
-    styleUrls: ['./new-enquiry.component.scss']
+    templateUrl: './service-costing.component.html',
+    styleUrls: ['./service-costing.component.scss']
 })
-export class NewEnquiryComponent implements OnInit {
+export class ServiceCostingComponent implements OnInit {
 
     suppliers: Array<any>;
     parts: Array<any>;
@@ -17,6 +17,9 @@ export class NewEnquiryComponent implements OnInit {
     supplierId: number;
     requestType: string;
     orderType: string;
+    vehicles: Array<any> = [];
+    customers: Array<any> = [];
+    vehicle: any = {};
     editMode: boolean;
     dueDate: any;
 
@@ -30,7 +33,7 @@ export class NewEnquiryComponent implements OnInit {
         if (this.editMode) {
             this.prePopulate();
         } else {
-            this.apiService.getSupplierList().then((resp: Array<any>) => this.suppliers = resp);
+            this.apiService.getCustomerList().then((resp: Array<any>) => this.customers = resp);
         }
     }
 
@@ -116,6 +119,14 @@ export class NewEnquiryComponent implements OnInit {
             console.error(e);
         }
     }
+
+    loadVehicle($event: number) {
+        if ($event === null) {
+            return;
+        }
+        this.apiService.getCustomerVehicles($event).then((resp: Array<any>) => this.vehicles = resp);
+    }
+
 }
 
 interface Supplier {

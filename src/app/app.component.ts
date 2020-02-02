@@ -1,7 +1,7 @@
-import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import {Component, ViewContainerRef, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {Router, NavigationEnd} from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -28,7 +28,4 @@ export class AppComponent implements OnInit, OnDestroy {
             this.subscription.unsubscribe();
         }
     }
-
-
-
 }

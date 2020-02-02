@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
 import {PipesModule} from '../shared/pipes/pipes.module';
-import {AddOrderComponent} from './add-order/add-order.component';
+import {ServiceCenterComponent} from './service-center/service-center.component';
 import {AddCustomerComponent} from './add-customer/add-customer.component';
 import {ServicingRoutingModule} from './servicing-routing.module';
 import {OrdersComponent} from './orders/orders.component';
@@ -11,14 +11,16 @@ import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstr
 import {UiSwitchModule} from 'ngx-ui-switch';
 import {CustomersComponent} from './customers/customers.component';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {ServiceCostingComponent} from './service-costing/service-costing.component';
 
 @NgModule({
     declarations: [
         AddVehicleComponent,
-        AddOrderComponent,
+        ServiceCenterComponent,
         AddCustomerComponent,
         OrdersComponent,
-        CustomersComponent
+        CustomersComponent,
+        ServiceCostingComponent
     ],
     imports: [
         CommonModule,
@@ -30,7 +32,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
         UiSwitchModule,
         NgSelectModule,
         NgbTimepickerModule
-    ]
+    ],
+    entryComponents: [ServiceCostingComponent]
 })
 export class ServicingModule {
 }

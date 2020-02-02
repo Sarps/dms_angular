@@ -5,11 +5,21 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header pb-2">
-                    <h4 class="card-title" id="bordered-layout-colored-controls">NEW SERVICE CENTER</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="card-title" id="bordered-layout-colored-controls">JOB FORM</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-raised btn-primary" (click)="openCosting()">
+                                <i class="fa fa-check-square-o"></i> Costing
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-content">
                     <div class="px-3">
-                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit($event)" id="add-part-form">
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit($event)"
+                              id="add-part-form">
                             <div class="form-body">
                                 <h4 class="form-section"><i class="ft-info"></i> Vehicle Data</h4>
                                 <div class="row">
@@ -17,16 +27,22 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="customer_name">Customer</label>
                                             <div class="col-md-9">
-                                                <ng-select [items]="customers" bindLabel="name" bindValue="id" id="customer_name" (ngModelChange)="loadVehicle($event)"
-                                                           placeholder="Select Customer" name="customer_id" [(ngModel)]="vehicle.customer_id">
+                                                <ng-select [items]="customers" bindLabel="name" bindValue="id"
+                                                           id="customer_name" (ngModelChange)="loadVehicle($event)"
+                                                           placeholder="Select Customer" name="customer_id"
+                                                           [(ngModel)]="vehicle.customer_id">
                                                     <ng-template ng-label-tmp let-item="item">
                                                         <b class="mx-1">{{item.name}}</b> @{{item.email}}
                                                     </ng-template>
                                                     <ng-template ng-option-tmp let-item="item" let-index="index">
                                                         <div class="my-2 mx-2">
-                                                            <b class="my-1">{{item.name}}</b> @<span>{{item.email}}</span>
+                                                            <b class="my-1">{{item.name}}</b>
+                                                            @<span>{{item.email}}</span>
                                                             <br>
-                                                            <span><i class="fa fa-address-card-o mr-1"></i>{{item.address}}</span> <span><i class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
+                                                            <span><i
+                                                                    class="fa fa-address-card-o mr-1"></i>{{item.address}}</span>
+                                                            <span><i
+                                                                    class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
                                                         </div>
                                                     </ng-template>
                                                 </ng-select>
@@ -37,16 +53,20 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="vehicle_id">Vehicle</label>
                                             <div class="col-md-9">
-                                                <ng-select [items]="vehicles" bindLabel="name" bindValue="id" id="vehicle_id"
-                                                           placeholder="Select Vehicle" name="customer_id" [(ngModel)]="order.vehicle_id">
+                                                <ng-select [items]="vehicles" bindLabel="name" bindValue="id"
+                                                           id="vehicle_id"
+                                                           placeholder="Select Vehicle" name="customer_id"
+                                                           [(ngModel)]="order.vehicle_id">
                                                     <ng-template ng-label-tmp let-item="item">
-                                                        <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b> <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
+                                                        <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
+                                                        <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
                                                     </ng-template>
                                                     <ng-template ng-option-tmp let-item="item" let-index="index">
                                                         <div class="my-2 mx-2">
                                                             <b class="my-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
                                                             <br>
-                                                            <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
+                                                            <span><i
+                                                                    class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
                                                         </div>
                                                     </ng-template>
                                                 </ng-select>
@@ -99,10 +119,12 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="job_time">Estimated Job Time</label>
+                                            <label class="col-md-3 label-control" for="job_time">Estimated Job
+                                                Time</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="job_time" class="form-control border-primary"
-                                                       placeholder="Job Time" name="job_time" [(ngModel)]="order.job_time">
+                                                       placeholder="Job Time" name="job_time"
+                                                       [(ngModel)]="order.job_time">
                                             </div>
                                         </div>
 
@@ -133,7 +155,8 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
-                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker #d2="ngbDatepicker">
+                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker
+                                                           #d2="ngbDatepicker">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text" (click)="d2.toggle()">
                                                             <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -193,7 +216,8 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
-                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker #d2="ngbDatepicker">
+                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker
+                                                           #d2="ngbDatepicker">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text" (click)="d2.toggle()">
                                                             <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -212,7 +236,8 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="job_time">Odometer Unit In</label>
+                                            <label class="col-md-3 label-control" for="job_time">Odometer Unit
+                                                In</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
                                                        placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
@@ -235,7 +260,8 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
-                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker #d2="ngbDatepicker">
+                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker
+                                                           #d2="ngbDatepicker">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text" (click)="d2.toggle()">
                                                             <i class="fa fa-calendar" style="cursor: pointer;"></i>
@@ -254,7 +280,8 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="job_time">Odometer Unit Out</label>
+                                            <label class="col-md-3 label-control" for="job_time">Odometer Unit
+                                                Out</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
                                                        placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">

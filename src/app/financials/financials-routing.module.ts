@@ -5,6 +5,7 @@ import {SalesLedgerComponent} from './sales-ledger/sales-ledger.component';
 import {PurchaseLedgerComponent} from './purchase-ledger/purchase-ledger.component';
 import {GeneralLedgerComponent} from './general-ledger/general-ledger.component';
 import {NewPaymentComponent} from './new-payment/new-payment.component';
+import {PurchaseLedgerDetailsComponent} from './purchase-ledger-details/purchase-ledger-details.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
         path: 'payment/new',
         component: NewPaymentComponent,
         data: { title: 'Add New Payment' },
+    },
+    {
+        path: 'k',
+        component: PurchaseLedgerDetailsComponent
     }
 ];
 

@@ -9,13 +9,16 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {NewPaymentComponent} from './new-payment/new-payment.component';
 import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {PurchaseLedgerDetailsComponent} from './purchase-ledger-details/purchase-ledger-details.component';
+import {PipesModule} from '../shared/pipes/pipes.module';
 
 @NgModule({
     declarations: [
         SalesLedgerComponent,
         PurchaseLedgerComponent,
         GeneralLedgerComponent,
-        NewPaymentComponent
+        NewPaymentComponent,
+        PurchaseLedgerDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -23,7 +26,12 @@ import {NgSelectModule} from '@ng-select/ng-select';
         UiSwitchModule,
         Ng2SmartTableModule,
         NgbDatepickerModule,
-        NgSelectModule
+        NgSelectModule,
+        PipesModule
+    ],
+    entryComponents: [PurchaseLedgerDetailsComponent],
+    exports: [
+        PurchaseLedgerDetailsComponent
     ]
 })
 export class FinancialsModule {

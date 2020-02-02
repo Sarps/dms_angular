@@ -3,20 +3,22 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ApiService} from '../../shared/services/api.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ServiceCostingComponent} from '../service-costing/service-costing.component';
 
 @Component({
     selector: 'app-bordered',
-    templateUrl: './add-order.component.html',
-    styleUrls: ['./add-order.component.scss']
+    templateUrl: './service-center.component.html',
+    styleUrls: ['./service-center.component.scss']
 })
-export class AddOrderComponent implements OnInit {
+export class ServiceCenterComponent implements OnInit {
     public vehicle: any;
     public vehicles: Array<any> = [];
     public customers: Array<any> = [];
     public order: any;
 
     constructor(private apiService: ApiService, private formBuilder: FormBuilder,
-                private router: Router, private toastr: ToastrService) {
+                private router: Router, private toastr: ToastrService, private modalService: NgbModal) {
         this.order = {};
         this.vehicle = {
             'number': '',
@@ -52,5 +54,9 @@ export class AddOrderComponent implements OnInit {
             return;
         }
         this.apiService.getCustomerVehicles($event).then((resp: Array<any>) => this.vehicles = resp);
+    }
+
+    openCosting() {
+        this.modalService.open(ServiceCostingComponent, {size: 'xl', centered: true});
     }
 }

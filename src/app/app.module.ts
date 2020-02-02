@@ -25,6 +25,8 @@ import {PipesModule} from './shared/pipes/pipes.module';
 import {ToastrModule} from 'ngx-toastr';
 import {InvoicePageComponent} from './invoice/invoice-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FinancialsModule} from './financials/financials.module';
+import {ServicingModule} from './servicing/servicing.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -56,6 +58,8 @@ export function createTranslateLoader(http: HttpClient) {
         PipesModule,
         ReactiveFormsModule,
         FormsModule,
+        FinancialsModule,
+        ServicingModule
     ],
     providers: [
         AuthService,

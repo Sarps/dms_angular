@@ -20,8 +20,8 @@ export class EnquiriesComponent implements OnInit {
         this.apiService.getEnquiryList().then((resp: Array<any>) => this.enquiries = resp);
     }
 
-    makePurchase() {
-
+    makePurchase(id) {
+        this.apiService.transferEnquiry(id).then((resp: any) => this.router.navigate(['/inventory/orders/list']))
     }
 
     async delete(id: number) {

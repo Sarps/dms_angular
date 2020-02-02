@@ -42,6 +42,10 @@ export class ApiService {
         return this._http.get(`${this.baseUrl}/suppliers`).toPromise();
     }
 
+    getSupplierLedger() {
+        return this._http.get(`${this.baseUrl}/suppliers/ledger`).toPromise();
+    }
+
     getManufacturerList() {
         return this._http.get(`${this.baseUrl}/manufacturers`).toPromise();
     }
@@ -80,6 +84,10 @@ export class ApiService {
 
     deleteEnquiry(id) {
         return this._http.delete(`${this.baseUrl}/enquiries/${id}`).toPromise();
+    }
+
+    transferEnquiry(id) {
+        return this._http.post(`${this.baseUrl}/enquiries/transfer/${id}`, {}).toPromise();
     }
 
     getOrder(id: any) {

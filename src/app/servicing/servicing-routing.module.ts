@@ -3,17 +3,17 @@ import {Routes, RouterModule} from '@angular/router';
 import {AddCustomerComponent} from './add-customer/add-customer.component';
 import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
 import {OrdersComponent} from './orders/orders.component';
-import {AddOrderComponent} from './add-order/add-order.component';
+import {ServiceCenterComponent} from './service-center/service-center.component';
 import {CustomersComponent} from './customers/customers.component';
 
 const routes: Routes = [
     {
-        path: 'sales-ledger/list',
+        path: 'customers/list',
         component: CustomersComponent,
         data: { title: 'Part List' },
     },
     {
-        path: 'sales-ledger/new',
+        path: 'customers/new',
         component: AddCustomerComponent,
         data: { title: 'New Part' },
     },
@@ -29,7 +29,7 @@ const routes: Routes = [
     },
     {
         path: 'orders/add',
-        component: AddOrderComponent,
+        component: ServiceCenterComponent,
         data: { title: 'New Purchase' },
     },
 ];

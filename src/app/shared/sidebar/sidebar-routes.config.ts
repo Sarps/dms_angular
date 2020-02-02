@@ -19,17 +19,17 @@ export const ROUTES: RouteInfo[] = [
     {
         path: '', title: 'Servicing', icon: 'fa fa-wrench', class: 'has-sub', badge: '', badgeClass: '',
         submenu: [
-            { path: '/servicing/sales-ledger/list', title: 'Customers', icon: 'fa fa-address-card-o', class: '', badge: '', badgeClass: '', submenu: [] },
-            { path: '/servicing/sales-ledger/new', title: 'New Customer Acct', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/servicing/customers/list', title: 'Customers', icon: 'fa fa-address-card-o', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/servicing/customers/new', title: 'New Customer Acct', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/servicing/vehicles/new', title: 'Add Vehicle', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/servicing/orders/list', title: 'Service Orders', icon: 'ft-layers', class: '', badge: '', badgeClass: '', submenu: [] },
-            { path: '/servicing/orders/add', title: 'New Service Order', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/servicing/orders/add', title: 'New Job', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
         ]
     },
     {
         path: '', title: 'Financial', icon: 'ft-sliders', class: 'has-sub', badge: '', badgeClass: '', submenu: [
-            { path: '/financials/sales', title: 'Sales Ledger', icon: 'ft-server', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/purchase', title: 'Purchase Ledger', icon: 'ft-cast', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/financials/sales', title: 'Sales Ledger', icon: 'ft-server', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/general', title: 'General Ledger', icon: 'ft-toggle-left', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/payment/new', title: 'Make Payment', icon: 'fa fa-money', class: '', badge: '', badgeClass: '', submenu: [] },
         ]

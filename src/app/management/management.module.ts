@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {PipesModule} from '../shared/pipes/pipes.module';
 import {UserPrivilegesComponent} from './user-privileges/user-privileges.component';
 import {DocumentsMarginsComponent} from './documents-margins/documents-margins.component';
+import {MatchHeightModule} from '../shared/directives/match-height.directive';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {DocumentsMarginsComponent} from './documents-margins/documents-margins.c
         Ng2SmartTableModule,
         ManagementRoutingModule,
         FormsModule,
-        PipesModule
+        PipesModule,
+        MatchHeightModule
     ]
 })
 export class ManagementModule {
