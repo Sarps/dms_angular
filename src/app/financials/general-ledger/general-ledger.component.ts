@@ -3,6 +3,7 @@ import {ServerDataSource} from 'ng2-smart-table';
 import {ApiService} from '../../shared/services/api.service';
 import {environment} from '../../../environments/environment';
 import {ToastrService} from 'ngx-toastr';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-supplier',
@@ -14,8 +15,9 @@ export class GeneralLedgerComponent implements OnInit {
     source: any;
     settings: any;
     endPoint: string;
+    ledger: any = {};
 
-    constructor(private apiService: ApiService, private toastr: ToastrService) {
+    constructor(private apiService: ApiService, private toastr: ToastrService, private modalService: NgbModal) {
         this.source = new ServerDataSource(apiService._http, {
             endPoint: `${environment.apiUrl}/suppliers/dt`,
             pagerPageKey: 'page',
@@ -56,7 +58,8 @@ export class GeneralLedgerComponent implements OnInit {
             },
             pager: {
                 perPage: 15,
-            }
+            },
+            mode: 'external'
         };
     }
 
@@ -107,4 +110,7 @@ export class GeneralLedgerComponent implements OnInit {
         }
     }
 
+    openCreateDialog(content) {
+        this.modalService.open(content, {size: 'lg'});
+    }
 }

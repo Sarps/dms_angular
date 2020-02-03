@@ -124,8 +124,6 @@ Z
 *src/app/shared/sidebar/sidebar.metadata.ts,1/5/159a3155ec5a25e18d39e59438f622d5c88295c8
 W
 'src/app/shared/pipes/key-filter.pipe.ts,f/3/f330bcef16665dd5a2fec217255f134e17e12e5c
-b
-2src/app/servicing/add-order/add-order.component.ts,7/a/7a80ecb0983d3d3998128e5b942135a00f8095c8
 \
 ,src/app/servicing/orders/orders.component.ts,2/6/269e5aab1dd33ab67430b0372f4001e91dd21baa
 f
@@ -168,8 +166,6 @@ q
 Asrc/app/financials/purchase-ledger/purchase-ledger.component.html,6/7/67d88ec53f3ed661b293ab7f21cb44adaf914c00
 k
 ;src/app/financials/sales-ledger/sales-ledger.component.html,d/8/d8d20fbb9ba1c3ed222fa200d7cfb167b4222d76
-d
-4src/app/servicing/add-order/add-order.component.html,e/6/e6589b29321dff162e569fbcc84b6d02bfd395bd
 7
 main.js,c/4/c4a4248f7568c9e41265502c39b0daeb8b635431
 y
@@ -202,3 +198,19 @@ H
 src/app/app.component.ts,3/0/302be76b17ec3188653bea112207e65dde129e59
 _
 /src/app/layouts/full/full-layout.component.html,f/e/fe88d38576f927ec03fe1f67cb37f83fc41418fc
+^
+.src/app/inventory/orders/orders.component.scss,c/6/c6ee7d0c6213374da14903c2e876511ef37b16e0
+q
+Asrc/app/financials/purchase-ledger/purchase-ledger.component.scss,2/0/20a2d7bf1107649e535d3e1bf233aff0dcf9673e
+
+Qsrc/app/financials/purchase-ledger-details/purchase-ledger-details.component.html,4/0/409f361652ce09159d4523714d05b252f0124c1d
+
+Osrc/app/financials/purchase-ledger-details/purchase-ledger-details.component.ts,f/b/fb64851970c2109bc1bac5f8d852ecee530f05c8
+n
+>src/app/servicing/service-costing/service-costing.component.ts,1/b/1b98d37520c46f64cdc1b6c186f4dd18f4431fa5
+n
+>src/app/servicing/service-center/service-center.component.html,9/2/92cfbae07123ae89ef4ff4282d515a37ac5790d6
+p
+@src/app/servicing/service-costing/service-costing.component.html,c/6/c6c4fe197f092759f6ec3b2c4d3c53b4d66dcd2a
+l
+<src/app/servicing/service-center/service-center.component.ts,e/c/ec82ff605731a60e5bfbcfaa9e0ae99821adc535

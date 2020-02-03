@@ -1,6 +1,6 @@
 {
-  "name": "apex",
-  "version": "8.0.0",
+  "name": "dms",
+  "version": "0.1.0",
   "license": "",
   "main": "main.js",
   "scripts": {
@@ -66,6 +66,7 @@
     "@types/node": "12.0.3",
     "codelyzer": "^5.0.1",
     "electron": "^7.1.9",
+    "electron-builder": "^22.3.2",
     "jasmine-core": "3.4.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.1.0",
