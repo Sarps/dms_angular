@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from 'ng-chartist';
+import {ChartEvent, ChartType} from 'ng-chartist';
 
 declare var require: any;
 
@@ -17,7 +17,8 @@ export interface Chart {
 @Component({
     selector: 'app-dashboard1',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class DashboardComponent {

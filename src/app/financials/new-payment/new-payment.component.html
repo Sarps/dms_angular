@@ -2,147 +2,263 @@
 <section id="shopping-cart">
     <div class="row text-left">
         <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">New Enquiry / Order</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <h4 class="form-section"><i class="ft-info"></i> General Info</h4>
-                        <div class="row my-3">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <div class="col-md-9 offset-md-3">
-                                        <div class="custom-control custom-radio custom-control-inline float-left">
-                                            <input type="radio" id="enquiry_request" name="request_type" value="enquiry"
-                                                   class="custom-control-input" [(ngModel)]="requestType">
-                                            <label class="custom-control-label" for="enquiry_request">Purchase Enquiry</label>
+            <div class="card-header">
+                <h4 class="card-title">New Tansaction</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <form class="form form-horizontal form-bordered"
+                          id="add-part-form">
+                        <div class="form-body">
+                            <h4 class="form-section"><i class="ft-info"></i> Transaction Type</h4>
+                            <div class="mt-3 mb-2 row">
+                                <div class="mx-auto">
+                                    <div class="custom-control custom-radio custom-control-inline float-left">
+                                        <input type="radio" id="enquiry_request" name="request_type"
+                                               value="enquiry"
+                                               class="custom-control-input" [(ngModel)]="requestType">
+                                        <label class="custom-control-label" for="enquiry_request">Payment</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline  float-left">
+                                        <input type="radio" id="order_request" name="request_type"
+                                               value="order"
+                                               class="custom-control-input" [(ngModel)]="requestType">
+                                        <label class="custom-control-label" for="order_request">Receipt</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="form-section"><i class="ft-info"></i> From</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="customer_name">Customer</label>
+                                        <div class="col-md-9">
+                                            <ng-select [items]="customers" bindLabel="name" bindValue="id"
+                                                       id="customer_name" (ngModelChange)="loadVehicle($event)"
+                                                       placeholder="Select Customer" name="customer_id"
+                                                       [(ngModel)]="vehicle.customer_id">
+                                                <ng-template ng-label-tmp let-item="item">
+                                                    <b class="mx-1">{{item.name}}</b> @{{item.email}}
+                                                </ng-template>
+                                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                    <div class="my-2 mx-2">
+                                                        <b class="my-1">{{item.name}}</b>
+                                                        @<span>{{item.email}}</span>
+                                                        <br>
+                                                        <span><i
+                                                                class="fa fa-address-card-o mr-1"></i>{{item.address}}</span>
+                                                        <span><i
+                                                                class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
+                                                    </div>
+                                                </ng-template>
+                                            </ng-select>
                                         </div>
-                                        <div class="custom-control custom-radio custom-control-inline  float-left">
-                                            <input type="radio" id="order_request" name="request_type" value="order"
-                                                   class="custom-control-input" [(ngModel)]="requestType">
-                                            <label class="custom-control-label" for="order_request">Purchase Order</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="vehicle_id">Select Job</label>
+                                        <div class="col-md-9">
+                                            <ng-select [items]="vehicles" bindLabel="name" bindValue="id"
+                                                       id="vehicle_id"
+                                                       placeholder="Select Vehicle" name="customer_id">
+                                                <ng-template ng-label-tmp let-item="item">
+                                                    <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
+                                                    <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
+                                                </ng-template>
+                                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                    <div class="my-2 mx-2">
+                                                        <b class="my-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
+                                                        <br>
+                                                        <span><i
+                                                                class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
+                                                    </div>
+                                                </ng-template>
+                                            </ng-select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="supplier">Supplier</label>
-                                    <div class="col-md-9">
-                                        <select id="supplier" name="interested" class="form-control" [(ngModel)]="supplierId"
-                                                (change)="loadParts()" [disabled]="editMode">
-                                            <option value="none" selected disabled>Supplied By</option>
-                                            <option [value]="supplier.id"
-                                                    *ngFor="let supplier of suppliers">{{supplier.name}}</option>
-                                        </select>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="job_status">Job Status</label>
+                                        <div class="col-md-9">
+                                            <select id="job_status" name="interested" class="form-control">
+                                                <option value="none" selected disabled>No Status Selected</option>
+                                                <option value="WIP">Work-In-Progress</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="vat_type">VAT &amp; NHL Type</label>
+                                        <div class="col-md-9">
+                                            <select id="vat_type" name="interested" class="form-control">
+                                                <option value="none" selected disabled>No Type Selected</option>
+                                                <option value="WIP">VAT &amp; NHL</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="vat_rate">Rate</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="vat_rate" class="form-control border-primary"
+                                                   placeholder="VAT & NHL Rate" name="job_time">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row mt-2">
+                                        <label class="col-md-4 label-control" for="notes">Job Carried Out</label>
+                                        <div class="col-md-12 offset-md-0">
+                                                <textarea id="notes" class="form-control border-primary"
+                                                          name="note" rows="5" placeholder=""></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6" *ngIf="requestType === 'order'">
-                                <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="order_type">Order Type</label>
-                                    <div class="col-md-9">
-                                        <select id="order_type" name="interested" class="form-control" [disabled]="editMode"
-                                                [(ngModel)]="orderType">
-                                            <option value="none" selected disabled>Type</option>
-                                            <option value="DIRECT">Direct Order</option>
-                                            <option value="STOCK">Stock Order</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="due_date">Due Date</label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="yyyy-mm-dd" id="due_date"
-                                                   name="due_date" [(ngModel)]="dueDate" ngbDatepicker
-                                                   #d2="ngbDatepicker">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text" (click)="d2.toggle()">
-                                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
-                                                </div>
+                            <h4 class="form-section mt-3"><i class="ft-info"></i> Search Product</h4>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <ng-select [items]="[]" bindLabel="name" bindValue="name"
+                                               placeholder="Select Part" (change)="addPart($event)">
+                                        <ng-template ng-label-tmp let-item="item">
+                                            <img height="15" width="15" [src]="item.image_url"/>
+                                            <b class="mx-1">{{item.name}}</b>#{{item.number}}
+                                        </ng-template>
+                                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                                            <div class="my-2">
+                                                <img height="75" [src]="item.image_url" style="max-height: 50px;"/>
+                                                <b class="mx-2">{{item.name}}</b> <span>{{item.description}}</span>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                                <div class="col-md-6">
+                                    <ng-select [items]="[]" bindLabel="name" bindValue="name"
+                                               placeholder="Select Service" (change)="addPart($event)">
+                                        <ng-template ng-label-tmp let-item="item">
+                                            <img height="15" width="15" [src]="item.image_url"/>
+                                            <b class="mx-1">{{item.name}}</b>#{{item.number}}
+                                        </ng-template>
+                                        <ng-template ng-option-tmp let-item="item" let-index="index">
+                                            <div class="my-2">
+                                                <img height="75" [src]="item.image_url" style="max-height: 50px;"/>
+                                                <b class="mx-2">{{item.name}}</b> <span>{{item.description}}</span>
+                                            </div>
+                                        </ng-template>
+                                    </ng-select>
                                 </div>
                             </div>
-                        </div>
-                        <h4 class="mt-3"><i class="ft-info"></i> Search Part</h4>
-                        <div *ngIf="currentSupplier" class="mb-3">
-                            <ng-select [items]="currentSupplier.parts" bindLabel="name" bindValue="name"
-                                       placeholder="Select part" (change)="addPart($event)">
-                                <ng-template ng-header-tmp>
-                                    Supplier: {{currentSupplier.name}}
-                                </ng-template>
-                                <ng-template ng-label-tmp let-item="item">
-                                    <img height="15" width="15" [src]="item.image_url"/>
-                                    <b class="mx-1">{{item.name}}</b>#{{item.number}}
-                                </ng-template>
-                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                    <div class="my-2">
-                                        <img height="75" [src]="item.image_url" style="max-height: 50px;"/>
-                                        <b class="mx-2">{{item.name}}</b> <span>{{item.description}}</span>
-                                    </div>
-                                </ng-template>
-                            </ng-select>
-                        </div>
-                        <table class="table table-responsive-md text-center">
-                            <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Part No</th>
-                                <th *ngIf="requestType === 'order'">Price</th>
-                                <th *ngIf="requestType === 'order'">Quantity</th>
-                                <th>Manufacturer</th>
-                                <th>Model</th>
-                                <th>Category</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let part of parts; let i = index;">
-                                <td><img class="media-object round-media" [src]="part.image_url"
-                                         alt="part image" style="height: 75px;"/></td>
-                                <td>{{part.name}}</td>
-                                <td>{{part.number}}</td>
-                                <td *ngIf="requestType === 'order'">
-                                    <input type="text" id="cost_price" class="form-control border-primary"
-                                           placeholder="Amount" name="cost_price" [(ngModel)]="part.retail_price">
-                                </td>
-                                <td *ngIf="requestType === 'order'">
-                                    {{part.quantity}}
-                                    <div class="btn-group ml-1">
-                                        <a class="bg-info px-1 py-1 white font-medium-5" (click)="part.quantity = part.quantity-1">-</a>
-                                        <a class="bg-info px-1 py-1 white font-medium-5" (click)="part.quantity = part.quantity+1">+</a>
-                                    </div>
-                                </td>
-                                <td>{{part.manufacturer.name}}</td>
-                                <td>{{part.model.name}}</td>
-                                <td>{{part.category.name}}</td>
-                                <td>
-                                    <a class="danger" data-original-title="" title="" (click)="removePart(i)">
-                                        <i class="ft-trash font-medium-3"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="row" *ngIf="currentSupplier">
-                            <div class="col-12">
+                            <table class="table table-responsive-md text-center mb-5">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Description</th>
+                                    <th>Quantity</th>
+                                    <th>UOM</th>
+                                    <th>Unit Price</th>
+                                    <th>Discount</th>
+                                    <th>Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let part of parts; let i = index;">
+                                    <td><img class="media-object round-media" [src]="part.image_url"
+                                             alt="part image" style="height: 75px;"/></td>
+                                    <td>{{part.name}}</td>
+                                    <td>{{part.number}}</td>
+                                    <td *ngIf="requestType === 'order'">
+                                        <input type="text" id="cost_price" class="form-control border-primary"
+                                               placeholder="Amount" name="cost_price"
+                                               [(ngModel)]="part.retail_price">
+                                    </td>
+                                    <td *ngIf="requestType === 'order'">
+                                        {{part.quantity}}
+                                        <div class="btn-group ml-1">
+                                            <a class="bg-info px-1 py-1 white font-medium-5"
+                                               (click)="part.quantity = part.quantity-1">-</a>
+                                            <a class="bg-info px-1 py-1 white font-medium-5"
+                                               (click)="part.quantity = part.quantity+1">+</a>
+                                        </div>
+                                    </td>
+                                    <td>{{part.manufacturer.name}}</td>
+                                    <td>{{part.model.name}}</td>
+                                    <td>{{part.category.name}}</td>
+                                    <td>
+                                        <a class="danger" data-original-title="" title="" (click)="removePart(i)">
+                                            <i class="ft-trash font-medium-3"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4 class="form-section mt-5"><i class="ft-info"></i> Summary </h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-responsive-md text-center">
+                                        <tbody>
+                                        <tr>
+                                            <td align="left">Total Parts and Materials</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">Total Labour</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">Total Sublet</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">Total Sundry</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">Others</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table class="table table-responsive-md text-center">
+                                        <tbody>
+                                        <tr>
+                                            <td align="left" colspan="2">Total Service Amt (Excl)</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" rowspan="3" valign="middle">VAT & NHIL</td>
+                                            <td align="left">i. Parts 3.00%</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">ii. Labour</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">Sub Total Amount</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" colspan="2">Total Service Amt (Incl)</td>
+                                            <td>{{0 | currency: 'GHS '}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
                                 <span style="float: right">
                                     <button class="btn btn-success btn-raised" (click)="save()">Save</button>
                                 </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

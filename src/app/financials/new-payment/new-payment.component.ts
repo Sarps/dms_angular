@@ -17,6 +17,9 @@ export class NewPaymentComponent implements OnInit {
     supplierId: number;
     requestType: string;
     orderType: string;
+    vehicles: Array<any> = [];
+    customers: Array<any> = [];
+    vehicle: any = {};
     editMode: boolean;
     dueDate: any;
 
@@ -30,7 +33,7 @@ export class NewPaymentComponent implements OnInit {
         if (this.editMode) {
             this.prePopulate();
         } else {
-            this.apiService.getSupplierList().then((resp: Array<any>) => this.suppliers = resp);
+            this.apiService.getCustomerList().then((resp: Array<any>) => this.customers = resp);
         }
     }
 
@@ -40,6 +43,9 @@ export class NewPaymentComponent implements OnInit {
 
     addPart(event) {
         event.quantity = 0;
+        if (this.parts.findIndex(v => v.id === event.id) > -1) {
+            return;
+        }
         this.parts.unshift({
             ...event
         });
@@ -112,6 +118,13 @@ export class NewPaymentComponent implements OnInit {
         } catch (e) {
             console.error(e);
         }
+    }
+
+    loadVehicle($event: number) {
+        if ($event === null) {
+            return;
+        }
+        this.apiService.getCustomerVehicles($event).then((resp: Array<any>) => this.vehicles = resp);
     }
 }
 

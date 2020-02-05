@@ -23,7 +23,8 @@ export const ROUTES: RouteInfo[] = [
             { path: '/servicing/customers/new', title: 'New Customer Acct', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/servicing/vehicles/new', title: 'Add Vehicle', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/servicing/orders/list', title: 'Service Orders', icon: 'ft-layers', class: '', badge: '', badgeClass: '', submenu: [] },
-            { path: '/servicing/orders/add', title: 'New Job', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/servicing/jobs/list', title: 'Task Board', icon: 'ft-tag', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/servicing/jobs/add', title: 'New Job', icon: '', class: '', badge: '', badgeClass: '', submenu: [] },
         ]
     },
     {
@@ -31,7 +32,7 @@ export const ROUTES: RouteInfo[] = [
             { path: '/financials/purchase', title: 'Purchase Ledger', icon: 'ft-cast', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/sales', title: 'Sales Ledger', icon: 'ft-server', class: '', badge: '', badgeClass: '', submenu: [] },
             { path: '/financials/general', title: 'General Ledger', icon: 'ft-toggle-left', class: '', badge: '', badgeClass: '', submenu: [] },
-            { path: '/financials/payment/new', title: 'Make Payment', icon: 'fa fa-money', class: '', badge: '', badgeClass: '', submenu: [] },
+            { path: '/financials/payments/list', title: 'Payments & Receipts', icon: 'fa fa-money', class: '', badge: '', badgeClass: '', submenu: [] },
         ]
     },
     {

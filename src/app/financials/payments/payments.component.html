@@ -1,0 +1,60 @@
+<!--Extended Table starts-->
+<div class="row text-left">
+    <div class="col-12">
+        <div class="content-header">Payments &amp; Receipts</div>
+        <p class="content-sub-header">List of all payments and receipts ordered by date added.</p>
+    </div>
+</div>
+<!--Shopping cart starts-->
+<section id="shopping-cart">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <table class="table table-responsive-md text-center">
+                            <thead>
+                            <tr>
+                                <th>Line Date</th>
+                                <th>Receipient Acct</th>
+                                <th>Amount</th>
+                                <th>Mobile</th>
+                                <th>Narration</th>
+                                <th>Job Number</th>
+                                <th>Charge Type</th>
+                                <th>Part Number</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><a class="btn btn-success btn-raised" (click)="addNew()">Add New</a></td>
+                            </tr>
+                            <tr *ngFor="let customer of customers">
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.email}}</td>
+                                <td>GHS {{customer.account_name}}</td>
+                                <td>GHS {{customer.mobile}}</td>
+                                <td>GHS {{customer.account_type}}</td>
+                                <td>{{customer.tax_type}}</td>
+                                <td>{{customer.tax_perc}}</td>
+                                <td>{{customer.status}}</td>
+                                <td>{{customer.status}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shopping cart ends-->

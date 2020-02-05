@@ -12,6 +12,8 @@ import {UiSwitchModule} from 'ngx-ui-switch';
 import {CustomersComponent} from './customers/customers.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {ServiceCostingComponent} from './service-costing/service-costing.component';
+import {DragulaModule} from 'ng2-dragula';
+import {TaskboardModule} from './taskboard/taskboard.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,7 @@ import {ServiceCostingComponent} from './service-costing/service-costing.compone
         AddCustomerComponent,
         OrdersComponent,
         CustomersComponent,
-        ServiceCostingComponent
+        ServiceCostingComponent,
     ],
     imports: [
         CommonModule,
@@ -31,7 +33,9 @@ import {ServiceCostingComponent} from './service-costing/service-costing.compone
         NgbDatepickerModule,
         UiSwitchModule,
         NgSelectModule,
-        NgbTimepickerModule
+        NgbTimepickerModule,
+        DragulaModule.forRoot(),
+        TaskboardModule
     ],
     entryComponents: [ServiceCostingComponent]
 })

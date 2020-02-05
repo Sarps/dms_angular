@@ -6,6 +6,7 @@ import {PurchaseLedgerComponent} from './purchase-ledger/purchase-ledger.compone
 import {GeneralLedgerComponent} from './general-ledger/general-ledger.component';
 import {NewPaymentComponent} from './new-payment/new-payment.component';
 import {PurchaseLedgerDetailsComponent} from './purchase-ledger-details/purchase-ledger-details.component';
+import {PaymentsComponent} from './payments/payments.component';
 
 
 const routes: Routes = [
@@ -25,14 +26,10 @@ const routes: Routes = [
         data: { title: 'General Ledger' },
     },
     {
-        path: 'payment/new',
-        component: NewPaymentComponent,
-        data: { title: 'Add New Payment' },
+        path: 'payments/list',
+        component: PaymentsComponent,
+        data: { title: 'Payment List' },
     },
-    {
-        path: 'k',
-        component: PurchaseLedgerDetailsComponent
-    }
 ];
 
 @NgModule({

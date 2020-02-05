@@ -38,12 +38,35 @@ export class ApiService {
         return this._http.get(`${this.baseUrl}/receipts`).toPromise();
     }
 
+    /**
+     * SUPPLIER CALLS
+     */
     getSupplierList() {
         return this._http.get(`${this.baseUrl}/suppliers`).toPromise();
     }
 
+    getSupplier(value: number) {
+        return this._http.get(`${this.baseUrl}/suppliers/${value}`).toPromise();
+    }
+
     getSupplierLedger() {
         return this._http.get(`${this.baseUrl}/suppliers/ledger`).toPromise();
+    }
+
+    getSupplierLedgerDetails(supplierId: number) {
+        return this._http.get(`${this.baseUrl}/suppliers/${supplierId}/ledger`).toPromise();
+    }
+
+    addSupplier(data) {
+        return this._http.post(`${this.baseUrl}/suppliers`, data).toPromise();
+    }
+
+    updateSupplier(id, data) {
+        return this._http.put(`${this.baseUrl}/suppliers/${id}`, data).toPromise();
+    }
+
+    deleteSupplier(id) {
+        return this._http.delete(`${this.baseUrl}/suppliers/${id}`).toPromise();
     }
 
     getManufacturerList() {
@@ -60,10 +83,6 @@ export class ApiService {
 
     getCategories() {
         return this._http.get(`${this.baseUrl}/categories`).toPromise();
-    }
-
-    getSupplier(value: number) {
-        return this._http.get(`${this.baseUrl}/suppliers/${value}`).toPromise();
     }
 
     addPart(data) {
@@ -108,18 +127,6 @@ export class ApiService {
 
     deleteOrder(id) {
         return this._http.delete(`${this.baseUrl}/orders/${id}`).toPromise();
-    }
-
-    addSupplier(data) {
-        return this._http.post(`${this.baseUrl}/suppliers`, data).toPromise();
-    }
-
-    updateSupplier(id, data) {
-        return this._http.put(`${this.baseUrl}/suppliers/${id}`, data).toPromise();
-    }
-
-    deleteSupplier(id) {
-        return this._http.delete(`${this.baseUrl}/suppliers/${id}`).toPromise();
     }
 
     addCompany(data) {

@@ -11,6 +11,7 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {PurchaseLedgerDetailsComponent} from './purchase-ledger-details/purchase-ledger-details.component';
 import {PipesModule} from '../shared/pipes/pipes.module';
+import {PaymentsComponent} from './payments/payments.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import {PipesModule} from '../shared/pipes/pipes.module';
         PurchaseLedgerComponent,
         GeneralLedgerComponent,
         NewPaymentComponent,
-        PurchaseLedgerDetailsComponent
+        PurchaseLedgerDetailsComponent,
+        PaymentsComponent
     ],
     imports: [
         CommonModule,
@@ -29,7 +31,7 @@ import {PipesModule} from '../shared/pipes/pipes.module';
         NgSelectModule,
         PipesModule
     ],
-    entryComponents: [PurchaseLedgerDetailsComponent],
+    entryComponents: [PurchaseLedgerDetailsComponent, NewPaymentComponent],
     exports: [
         PurchaseLedgerDetailsComponent
     ]

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import * as Chartist from 'chartist';
-import { ChartType, ChartEvent } from "ng-chartist";
+import {ChartEvent, ChartType} from 'ng-chartist';
 
 //Declarations
 declare var require: any;
@@ -19,6 +19,7 @@ export interface Chart {
     selector: 'app-chartist',
     templateUrl: './chartist.component.html',
     styleUrls: ['./chartist.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ChartistComponent {

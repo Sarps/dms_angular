@@ -5,6 +5,7 @@ import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
 import {OrdersComponent} from './orders/orders.component';
 import {ServiceCenterComponent} from './service-center/service-center.component';
 import {CustomersComponent} from './customers/customers.component';
+import {TaskboardComponent} from './taskboard/taskboard.component';
 
 const routes: Routes = [
     {
@@ -28,7 +29,12 @@ const routes: Routes = [
         data: { title: 'Orders' },
     },
     {
-        path: 'orders/add',
+        path: 'jobs/list',
+        component: TaskboardComponent,
+        data: { title: 'Orders' },
+    },
+    {
+        path: 'jobs/add',
         component: ServiceCenterComponent,
         data: { title: 'New Purchase' },
     },

@@ -39,6 +39,6 @@ export class PurchaseLedgerComponent implements OnInit {
             return;
         }
         const modalRef = this.modalService.open(PurchaseLedgerDetailsComponent, {size: 'lg', centered: true});
-        // modalRef.componentInstance.name = 'World';
+        modalRef.componentInstance.supplierId = supplier.id;
     }
 }
