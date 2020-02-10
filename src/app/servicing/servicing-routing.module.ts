@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AddCustomerComponent} from './add-customer/add-customer.component';
 import {AddVehicleComponent} from './add-vehicle/add-vehicle.component';
-import {OrdersComponent} from './orders/orders.component';
 import {ServiceCenterComponent} from './service-center/service-center.component';
 import {CustomersComponent} from './customers/customers.component';
 import {TaskboardComponent} from './taskboard/taskboard.component';
@@ -22,11 +21,6 @@ const routes: Routes = [
         path: 'vehicles/new',
         component: AddVehicleComponent,
         data: { title: 'Enquiries' },
-    },
-    {
-        path: 'orders/list',
-        component: OrdersComponent,
-        data: { title: 'Orders' },
     },
     {
         path: 'jobs/list',

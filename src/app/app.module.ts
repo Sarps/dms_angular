@@ -27,6 +27,11 @@ import {InvoicePageComponent} from './invoice/invoice-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FinancialsModule} from './financials/financials.module';
 import {ServicingModule} from './servicing/servicing.module';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ContentInvoicePageComponent} from './invoice/content-invoice-page.component';
+import {FullInvoicePageComponent} from './invoice/full-invoice-page.component';
+import {ChartistModule} from 'ng-chartist';
+import {MatchHeightModule} from './shared/directives/match-height.directive';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -39,7 +44,16 @@ export function createTranslateLoader(http: HttpClient) {
 
 
 @NgModule({
-    declarations: [AppComponent, FullLayoutComponent, ContentLayoutComponent, TrashCanComponent, InvoicePageComponent],
+    declarations: [
+        AppComponent,
+        FullLayoutComponent,
+        ContentLayoutComponent,
+        TrashCanComponent,
+        InvoicePageComponent,
+        DashboardComponent,
+        ContentInvoicePageComponent,
+        FullInvoicePageComponent
+    ],
     imports: [
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -59,7 +73,9 @@ export function createTranslateLoader(http: HttpClient) {
         ReactiveFormsModule,
         FormsModule,
         FinancialsModule,
-        ServicingModule
+        ServicingModule,
+        ChartistModule,
+        MatchHeightModule
     ],
     providers: [
         AuthService,

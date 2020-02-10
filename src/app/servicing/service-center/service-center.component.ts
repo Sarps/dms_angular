@@ -12,24 +12,14 @@ import {ServiceCostingComponent} from '../service-costing/service-costing.compon
     styleUrls: ['./service-center.component.scss']
 })
 export class ServiceCenterComponent implements OnInit {
-    public vehicle: any;
     public vehicles: Array<any> = [];
     public customers: Array<any> = [];
-    public order: any;
+    public job: any;
+    public isNew: boolean;
 
     constructor(private apiService: ApiService, private formBuilder: FormBuilder,
                 private router: Router, private toastr: ToastrService, private modalService: NgbModal) {
-        this.order = {};
-        this.vehicle = {
-            'number': '',
-            'name': '',
-            'retail_price': 0.0,
-            'cost_price': 0.0,
-            'category_id': null,
-            'manufacturer_id': null,
-            'model_id': null,
-            'quantity': 0
-        };
+        this.job = {};
     }
 
     ngOnInit() {
@@ -49,14 +39,31 @@ export class ServiceCenterComponent implements OnInit {
         }
     }
 
-    loadVehicle($event: number) {
+    loadJobs($event: number) {
         if ($event === null) {
             return;
         }
-        this.apiService.getCustomerVehicles($event).then((resp: Array<any>) => this.vehicles = resp);
+        // this.apiService.getCustomerJobs($event).then((resp: Array<any>) => this.vehicles = resp);
+    }
+
+    loadVehicles($event: any) {
+        if ($event === null) {
+            return;
+        }
+        this.apiService.getCustomerVehicles($event.id).then((resp: Array<any>) => this.vehicles = resp);
     }
 
     openCosting() {
         this.modalService.open(ServiceCostingComponent, {size: <any>'xl', centered: true});
+    }
+
+    async saveJob() {
+        try {
+            // TODO: Process 3 Date and Time Pairs
+            const resp = await this.apiService.addJob(this.job);
+            this.openCosting();
+        } catch (e) {
+            console.log(e);
+        }
     }
 }

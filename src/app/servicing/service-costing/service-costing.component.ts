@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from '../../shared/services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap';
@@ -19,22 +19,18 @@ export class ServiceCostingComponent implements OnInit {
     orderType: string;
     vehicles: Array<any> = [];
     customers: Array<any> = [];
+    @Input()
+    job: any = [];
     vehicle: any = {};
-    editMode: boolean;
     dueDate: any;
 
     constructor(private apiService: ApiService, private router: Router,
                 private route: ActivatedRoute, private toastr: ToastrService) {
         this.parts = [];
-        this.editMode = this.router.url.indexOf('/edit') > -1;
     }
 
     ngOnInit(): void {
-        if (this.editMode) {
-            this.prePopulate();
-        } else {
-            this.apiService.getCustomerList().then((resp: Array<any>) => this.customers = resp);
-        }
+        this.customers = [this.job.vehicle.customer];
     }
 
     loadParts() {

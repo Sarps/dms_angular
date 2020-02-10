@@ -8,6 +8,7 @@ import {ApiService} from '../services/api.service';
 export class AuthGuard implements CanActivate {
 
     public _user;
+    public _general;
 
     constructor(private authService: AuthService, private storageService: StorageService,
                 private router: Router, private apiService: ApiService) {

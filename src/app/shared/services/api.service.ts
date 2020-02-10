@@ -170,4 +170,22 @@ export class ApiService {
     getCustomerVehicles(id: number) {
         return this._http.get(`${this.baseUrl}/vehicles/customer/${id}`).toPromise();
     }
+
+    async addJob(job: any) {
+        return this._http.post(`${this.baseUrl}/jobs`, job).toPromise();
+    }
+
+    async loadJobs() {
+        const resp = <Array<any>> await this._http.get(`${this.baseUrl}/jobs`).toPromise();
+        for (const key in resp) {
+            if (resp.hasOwnProperty(key)) {
+                resp[key] = resp[key].map(r => {
+                    r.vehicle.customer = {...r.vehicle.customer, ...r.vehicle.customer.user, user: undefined};
+                    return r;
+                });
+            }
+        }
+        console.log(resp);
+        return resp;
+    }
 }

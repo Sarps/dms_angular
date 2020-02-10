@@ -1,111 +1,79 @@
 import {Component, ViewEncapsulation, ViewChild, ElementRef} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import {TaskBoardService} from './taskboard.service';
-import {CrudModalComponent} from './crud-modal/crud-modal.component';
-import {Task} from './taskboard.model';
 import {DragulaService} from 'ng2-dragula';
 import {Router} from '@angular/router';
+import {ApiService} from '../../shared/services/api.service';
+import {ToastrService} from 'ngx-toastr';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ServiceCostingComponent} from '../service-costing/service-costing.component';
 
 @Component({
     selector: 'app-taskboard',
     templateUrl: './taskboard.component.html',
     styleUrls: ['./taskboard.component.scss'],
-    providers: [TaskBoardService],
     encapsulation: ViewEncapsulation.None
 })
 export class TaskboardComponent {
-
-    @ViewChild('todoTitle', {static: false}) titleInputRef: ElementRef;
-    @ViewChild('todoMessage', {static: false}) messageInputRef: ElementRef;
-
     BAG = 'task-group';
+    tasks: any = {};
+    groups = [
+        {title: 'On Hold', key: 'backLog', icon: 'ft-alert-octagon', color: 'warning'},
+        {title: 'To Do', key: 'todo', icon: 'ft-list', color: 'primary'},
+        {title: 'In Progress', key: 'inProcess', icon: 'ft-trending-up', color: 'info'},
+        {title: 'Completed', key: 'completed', icon: 'ft-thumbs-up', color: 'success'},
+    ];
 
-    tasks: Task[];
-    todo: Task[];
-    inProcess: Task[];
-    backLog: Task[];
-    completed: Task[];
-
-    constructor(private dragulaService: DragulaService, private elRef: ElementRef, private taskBoardService: TaskBoardService,
-                private modalService: NgbModal, private router: Router) {
-        this.tasks = this.taskBoardService.tasks;
+    constructor(private dragulaService: DragulaService, private apiService: ApiService, private router: Router,
+                private toastr: ToastrService, private modalService: NgbModal) {
+        this.tasks = this.groups.reduce((acc, cur) => {
+            acc[cur.key] = [];
+            return acc;
+        }, {});
         this.loadTasks();
         dragulaService.drop(this.BAG)
             .subscribe(({el, target}) => {
-                this.updateTaskStatus(el.getAttribute('task-id'), target.id)
+                this.updateTaskStatus(el.getAttribute('task-id'), el.getAttribute('task-group'), target.id)
             });
     }
 
     loadTasks() {
-
-        this.todo = this.tasks.filter((task: Task) => task.status === 'New');
-        this.inProcess = this.tasks.filter((task: Task) => task.status === 'In-Process');
-        this.backLog = this.tasks.filter((task: Task) => task.status === 'Pending');
-        this.completed = this.tasks.filter((task: Task) => task.status === 'Completed');
+        this.apiService.loadJobs()
+            .then((data) => {
+                this.tasks = this.groups.reduce((acc, cur) => {
+                    acc[cur.key] = acc[cur.key] || [];
+                    return acc;
+                }, data)
+            })
+            .catch(e => {
+                this.toastr.error('Error setting up job board. Please refresh the page', 'Error');
+            });
     }
 
     editTask(id: number) {
-        let task: Task = this.tasks.find(x => x.taskId === id);
-        const modalRef = this.modalService.open(CrudModalComponent);
-        modalRef.componentInstance.id = id; // should be the id
-        modalRef.componentInstance.data = {title: task.taskTitle, message: task.taskMessage}; // should be the data
-
-        modalRef.result.then((result) => {
-
-            let index = this.tasks.indexOf(task);
-            task.taskTitle = result.title;
-            task.taskMessage = result.message;
-            this.taskBoardService.UpdateTask(task, index).subscribe(data => {
-                this.tasks = data;
-                this.loadTasks();
-            });
-
-        }).catch((error) => {
-            console.log(error);
-        });
+        this.router.navigate([`/servicing/jobs/add/${id}`]);
     }
 
-    updateTaskStatus(id: string, status: string) {
+    async updateTaskStatus(id: string, oldStatus: string, newStatus: string) {
         if (id) {
-            let task: Task = this.tasks.find(x => x.taskId === +id);
-            let index = this.tasks.indexOf(task);
-            task.status = status;
-            this.taskBoardService.UpdateTask(task, index).subscribe(data => {
-                this.tasks = data;
-                this.loadTasks();
-            });
+            this.loadTasks();
         }
 
     }
 
-    deleteTask(id: number) {
-        let task: Task = this.tasks.find(x => x.taskId === id);
-        let index = this.tasks.indexOf(task);
-        this.taskBoardService.deleteTask(index).subscribe(data => {
-            this.tasks = data;
-            this.loadTasks();
-        });
+    async deleteTask(id: number) {
+        const task: any = this.tasks.find(x => x.taskId === id);
+        const index = this.tasks.indexOf(task);
+        // await this.apiService.deleteJob(index);
+        this.loadTasks();
     }
 
     addTask() {
-      this.router.navigate(['/servicing/jobs/add']);
+        this.router.navigate(['/servicing/jobs/add']);
     }
 
-    addTask2() {
-        const modalRef = this.modalService.open(CrudModalComponent,);
-        modalRef.componentInstance.id = 0; // should be the id
-        modalRef.componentInstance.data = {title: '', message: ''}; // should be the data
-
-        modalRef.result.then((result) => {
-            this.taskBoardService.addNewTask(result.title, result.message).subscribe(data => {
-                this.tasks = data;
-                this.loadTasks();
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+    addCosting(task) {
+        const modalRef = this.modalService.open(ServiceCostingComponent, {size: <any>'xl', centered: true});
+        modalRef.componentInstance.job = task;
     }
-
 
 }

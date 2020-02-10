@@ -9,7 +9,7 @@
                         <div class="col-md-6">
                             <h4 class="card-title" id="bordered-layout-colored-controls">JOB FORM</h4>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" *ngIf="isNew">
                             <button class="btn btn-raised btn-primary" (click)="openCosting()">
                                 <i class="fa fa-check-square-o"></i> Costing
                             </button>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-content">
                     <div class="px-3">
-                        <form class="form form-horizontal form-bordered" (ngSubmit)="onSubmit($event)"
+                        <form class="form form-horizontal form-bordered" (ngSubmit)="saveJob()"
                               id="add-part-form">
                             <div class="form-body">
                                 <h4 class="form-section"><i class="ft-info"></i> Vehicle Data</h4>
@@ -28,9 +28,8 @@
                                             <label class="col-md-3 label-control" for="customer_name">Customer</label>
                                             <div class="col-md-9">
                                                 <ng-select [items]="customers" bindLabel="name" bindValue="id"
-                                                           id="customer_name" (ngModelChange)="loadVehicle($event)"
-                                                           placeholder="Select Customer" name="customer_id"
-                                                           [(ngModel)]="vehicle.customer_id">
+                                                           id="customer_name" (change)="loadVehicles($event)"
+                                                           placeholder="Select Customer" name="customer_id">
                                                     <ng-template ng-label-tmp let-item="item">
                                                         <b class="mx-1">{{item.name}}</b> @{{item.email}}
                                                     </ng-template>
@@ -56,7 +55,7 @@
                                                 <ng-select [items]="vehicles" bindLabel="name" bindValue="id"
                                                            id="vehicle_id"
                                                            placeholder="Select Vehicle" name="customer_id"
-                                                           [(ngModel)]="order.vehicle_id">
+                                                           [(ngModel)]="job.vehicle_id">
                                                     <ng-template ng-label-tmp let-item="item">
                                                         <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
                                                         <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
@@ -80,8 +79,10 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="job_type">Job Type</label>
                                             <div class="col-md-9">
-                                                <select id="job_type" name="job_type" class="form-control">
+                                                <select id="job_type" name="job_type" class="form-control" [(ngModel)]="job.job_type_id">
                                                     <option value="none" selected="" disabled="">Job Type</option>
+                                                    <option value="1">Tyre Change</option>
+                                                    <option value="2">Gasket Fix</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -90,7 +91,7 @@
                                             <label class="col-md-3 label-control" for="intake">Intake</label>
                                             <div class="col-md-9">
                                                 <select id="intake" name="intake" class="form-control"
-                                                        [(ngModel)]="order.intake">
+                                                        [(ngModel)]="job.intake_id">
                                                     <option value="none" selected="" disabled="">Intake</option>
                                                     <option value="appointment">By Appointment</option>
                                                 </select>
@@ -100,21 +101,21 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="warranty">Warranty</label>
                                             <div class="col-md-9">
-                                                <ui-switch [(ngModel)]="order.warranty" id="warranty"></ui-switch>
+                                                <ui-switch [(ngModel)]="job.warranty" id="warranty"></ui-switch>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="repeat">Repeat Repair</label>
                                             <div class="col-md-9">
-                                                <ui-switch [(ngModel)]="order.repeat" id="repeat"></ui-switch>
+                                                <ui-switch [(ngModel)]="job.repeat_repair" id="repeat"></ui-switch>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="internal">Internal Job</label>
                                             <div class="col-md-9">
-                                                <ui-switch [(ngModel)]="order.internal" id="internal"></ui-switch>
+                                                <ui-switch [(ngModel)]="job.internal_job" id="internal"></ui-switch>
                                             </div>
                                         </div>
 
@@ -124,16 +125,17 @@
                                             <div class="col-md-9">
                                                 <input type="text" id="job_time" class="form-control border-primary"
                                                        placeholder="Job Time" name="job_time"
-                                                       [(ngModel)]="order.job_time">
+                                                       [(ngModel)]="job.est_time">
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="col-md-3 label-control" for="job_type">Payment Type</label>
+                                            <label class="col-md-3 label-control" for="payment_type">Payment Type</label>
                                             <div class="col-md-9">
-                                                <select id="payment_type" name="job_type" class="form-control">
+                                                <select id="payment_type" name="payment_type" class="form-control"
+                                                    [(ngModel)]="job.payment_type_id" >
                                                     <option value="none" selected="" disabled="">Payment Type</option>
                                                 </select>
                                             </div>
@@ -142,7 +144,7 @@
                                             <label class="col-md-3 label-control" for="notes">Request Details</label>
                                             <div class="col-md-9 offset-md-3">
                                                 <textarea id="notes" class="form-control border-primary"
-                                                          name="note" rows="12" placeholder=""></textarea>
+                                                          name="note" rows="12" placeholder="" [(ngModel)]="job.request_details"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -155,7 +157,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
-                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker
+                                                           name="appt_date" [(ngModel)]="job.appt_date" ngbDatepicker
                                                            #d2="ngbDatepicker">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text" (click)="d2.toggle()">
@@ -170,14 +172,14 @@
                                             <label class="col-md-3 label-control" for="job_time">Appt By</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
-                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="job.appt_by">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="confirmed">Confirmed</label>
                                             <div class="col-md-9">
-                                                <ui-switch [(ngModel)]="order.confirmed" id="confirmed"></ui-switch>
+                                                <ui-switch [(ngModel)]="job.confirmed" id="confirmed"></ui-switch>
                                             </div>
                                         </div>
 
@@ -186,7 +188,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="appt_time">Appt. Time</label>
                                             <div class="col-md-9">
-                                                <ngb-timepicker [(ngModel)]="order.appt_time" [meridian]="true"
+                                                <ngb-timepicker [(ngModel)]="job.appt_time" [meridian]="true"
                                                                 id="appt_time" [spinners]="false"></ngb-timepicker>
                                             </div>
                                         </div>
@@ -195,14 +197,14 @@
                                             <label class="col-md-3 label-control" for="job_time">Resch</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="resch" class="form-control border-primary"
-                                                       placeholder="Resch" name="resch" [(ngModel)]="order.resch">
+                                                       placeholder="Resch" name="resch" [(ngModel)]="job.resch">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="job_time">Appt By</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
-                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="job.appt_by">
                                             </div>
                                         </div>
 
@@ -216,7 +218,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
-                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker
+                                                           name="appt_date" [(ngModel)]="job.appt_date" ngbDatepicker
                                                            #d2="ngbDatepicker">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text" (click)="d2.toggle()">
@@ -230,7 +232,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="appt_time">Reception Time</label>
                                             <div class="col-md-9">
-                                                <ngb-timepicker [(ngModel)]="order.appt_time" [meridian]="true"
+                                                <ngb-timepicker [(ngModel)]="job.appt_time" [meridian]="true"
                                                                 id="appt_time" [spinners]="false"></ngb-timepicker>
                                             </div>
                                         </div>
@@ -240,7 +242,7 @@
                                                 In</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
-                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="job.appt_by">
                                             </div>
                                         </div>
 
@@ -248,7 +250,7 @@
                                             <label class="col-md-3 label-control" for="job_time">Received By</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
-                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="job.appt_by">
                                             </div>
                                         </div>
 
@@ -260,7 +262,7 @@
                                             <div class="col-md-9">
                                                 <div class="input-group">
                                                     <input class="form-control" placeholder="yyyy-mm-dd" id="appt_date"
-                                                           name="appt_date" [(ngModel)]="order.appt_date" ngbDatepicker
+                                                           name="appt_date" [(ngModel)]="job.appt_date" ngbDatepicker
                                                            #d2="ngbDatepicker">
                                                     <div class="input-group-append">
                                                         <div class="input-group-text" (click)="d2.toggle()">
@@ -274,7 +276,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 label-control" for="appt_time">Delivery Time</label>
                                             <div class="col-md-9">
-                                                <ngb-timepicker [(ngModel)]="order.appt_time" [meridian]="true"
+                                                <ngb-timepicker [(ngModel)]="job.appt_time" [meridian]="true"
                                                                 id="appt_time" [spinners]="false"></ngb-timepicker>
                                             </div>
                                         </div>
@@ -284,7 +286,7 @@
                                                 Out</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
-                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="job.appt_by">
                                             </div>
                                         </div>
 
@@ -292,7 +294,7 @@
                                             <label class="col-md-3 label-control" for="job_time">Delivered By</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="appt_by" class="form-control border-primary"
-                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="order.appt_by">
+                                                       placeholder="Appt By" name="appt_by" [(ngModel)]="job.appt_by">
                                             </div>
                                         </div>
 

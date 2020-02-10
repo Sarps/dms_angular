@@ -14,50 +14,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="customer_name">Customer</label>
+                                        <label class="col-md-3 label-control">Customer</label>
                                         <div class="col-md-9">
-                                            <ng-select [items]="customers" bindLabel="name" bindValue="id"
-                                                       id="customer_name" (ngModelChange)="loadVehicle($event)"
-                                                       placeholder="Select Customer" name="customer_id"
-                                                       [(ngModel)]="vehicle.customer_id">
-                                                <ng-template ng-label-tmp let-item="item">
-                                                    <b class="mx-1">{{item.name}}</b> @{{item.email}}
-                                                </ng-template>
-                                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                                    <div class="my-2 mx-2">
-                                                        <b class="my-1">{{item.name}}</b>
-                                                        @<span>{{item.email}}</span>
-                                                        <br>
-                                                        <span><i
-                                                                class="fa fa-address-card-o mr-1"></i>{{item.address}}</span>
-                                                        <span><i
-                                                                class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
-                                                    </div>
-                                                </ng-template>
-                                            </ng-select>
+                                            <b class="mx-1">{{job.vehicle.customer.name}}</b>
+                                            <br>
+                                            @ {{job.vehicle.customer.email}}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="vehicle_id">Select Job</label>
+                                        <label class="col-md-3 label-control">Job</label>
                                         <div class="col-md-9">
-                                            <ng-select [items]="vehicles" bindLabel="name" bindValue="id"
-                                                       id="vehicle_id"
-                                                       placeholder="Select Vehicle" name="customer_id">
-                                                <ng-template ng-label-tmp let-item="item">
-                                                    <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
-                                                    <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
-                                                </ng-template>
-                                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                                    <div class="my-2 mx-2">
-                                                        <b class="my-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
-                                                        <br>
-                                                        <span><i
-                                                                class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
-                                                    </div>
-                                                </ng-template>
-                                            </ng-select>
+                                            <b class="mx-1">{{job.vehicle.model.manufacturer.name}} {{job.vehicle.model.name}}</b>
+                                            <br>
+                                            <span><i class="fa fa-car mr-1"></i> REG: {{job.vehicle.reg_no}}</span>
                                         </div>
                                     </div>
                                 </div>

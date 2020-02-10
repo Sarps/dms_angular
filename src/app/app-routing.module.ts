@@ -6,10 +6,14 @@ import {ContentLayoutComponent} from './layouts/content/content-layout.component
 
 import {AuthGuard} from './shared/auth/auth-guard.service';
 import {TrashCanComponent} from './trash-can/trash-can.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {Content} from '@angular/compiler/src/render3/r3_ast';
+import {ContentInvoicePageComponent} from './invoice/content-invoice-page.component';
+import {FullInvoicePageComponent} from './invoice/full-invoice-page.component';
 
 const appRoutes: Routes = [
     {
-        path: '', component: FullLayoutComponent, data: {title: 'full Views'}, canActivate: [AuthGuard], children: [
+        path: '', component: FullLayoutComponent, data: {title: 'Full Views'}, canActivate: [AuthGuard], children: [
             {
                 path: 'inventory',
                 loadChildren: () => import('./inventory/inventory.module').then(m => m.InventoryModule)
@@ -27,26 +31,28 @@ const appRoutes: Routes = [
                 loadChildren: () => import('./management/management.module').then(m => m.ManagementModule)
             },
             {
-                path: 'trash',
-                component: TrashCanComponent,
+                path: 'inventory/invoice', component: FullInvoicePageComponent, data: {title: 'Invoice'},
             },
             {
-                path: '',
-                loadChildren: () => import('./pages/full-layout-page/full-pages.module').then(m => m.FullPagesModule)
-            }
+                path: 'trash', component: TrashCanComponent,
+            },
+            {
+                path: 'home', component: DashboardComponent, data: {title: 'Home'},
+            },
+            {path: '', redirectTo: '/home', pathMatch: 'prefix'},
         ]
     },
     {
         path: '', component: ContentLayoutComponent, data: {title: 'content Views'}, canActivate: [], children: [
             {
-                path: '',
-                loadChildren: () => import('./pages/content-layout-page/content-pages.module').then(m => m.ContentPagesModule)
+                path: 'invoice',
+                component: ContentInvoicePageComponent,
+                data: {title: 'Invoice'},
+                canActivate: [AuthGuard]
             }
         ]
     },
-    {
-        path: '', redirectTo: 'login', pathMatch: 'full',
-    },
+    {path: '', redirectTo: '/home', pathMatch: 'full',},
 ];
 
 
@@ -55,4 +61,5 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

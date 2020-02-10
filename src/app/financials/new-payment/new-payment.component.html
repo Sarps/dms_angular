@@ -27,11 +27,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <h4 class="form-section"><i class="ft-info"></i> From</h4>
+                            <h4 class="form-section"><i class="ft-info"></i> Sender</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="customer_name">Customer</label>
+                                        <label class="col-md-3 label-control" for="customer_name">General Ledger</label>
                                         <div class="col-md-9">
                                             <ng-select [items]="customers" bindLabel="name" bindValue="id"
                                                        id="customer_name" (ngModelChange)="loadVehicle($event)"
@@ -54,27 +54,90 @@
                                             </ng-select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="payment_type">Payment Type</label>
+                                        <div class="col-md-9">
+                                            <select id="payment_type" name="status" class="form-control">
+                                                <option value="none" selected disabled>No Type Selected</option>
+                                                <option value="cash">Cash</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="acct_name">Acct Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="acct_name" class="form-control border-primary"
+                                                   placeholder="Acct Name" name="acct_name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="status">Status</label>
+                                        <div class="col-md-9">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="none" selected disabled>No Status Selected</option>
+                                                <option value="open">Open</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="vehicle_id">Select Job</label>
+                                        <label class="col-md-3 label-control" for="total_payment">Total Payment</label>
                                         <div class="col-md-9">
-                                            <ng-select [items]="vehicles" bindLabel="name" bindValue="id"
-                                                       id="vehicle_id"
-                                                       placeholder="Select Vehicle" name="customer_id">
-                                                <ng-template ng-label-tmp let-item="item">
-                                                    <b class="mx-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
-                                                    <span><i class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
-                                                </ng-template>
-                                                <ng-template ng-option-tmp let-item="item" let-index="index">
-                                                    <div class="my-2 mx-2">
-                                                        <b class="my-1">{{item.model.manufacturer.name}} {{item.model.name}}</b>
-                                                        <br>
-                                                        <span><i
-                                                                class="fa fa-car mr-1"></i> REG: {{item.reg_no}}</span>
-                                                    </div>
-                                                </ng-template>
-                                            </ng-select>
+                                            <input type="text" id="total_payment" class="form-control border-primary"
+                                                   placeholder="Acct Name" name="total_payment" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="open_balance">Open Balance</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="open_balance" class="form-control border-primary"
+                                                   placeholder="Open Balance" name="open_balance" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="closing_balance">Closing
+                                            Balance</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="closing_balance" class="form-control border-primary"
+                                                   placeholder="Closing Balance" name="closing_balance" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="payment_ref">Payment
+                                            Reference</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="payment_ref" class="form-control border-primary"
+                                                   placeholder="Closing Balance" name="payment_ref" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="form-section"><i class="ft-info"></i> Recipient</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control">Ledger Type</label>
+                                        <div class="col-md-9">
+                                            <div class="custom-control custom-radio custom-control-inline float-left">
+                                                <input type="radio" id="enquiry_request" name="request_type"
+                                                       value="enquiry"
+                                                       class="custom-control-input" [(ngModel)]="requestType">
+                                                <label class="custom-control-label"
+                                                       for="enquiry_request">General</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline  float-left">
+                                                <input type="radio" id="order_request" name="request_type"
+                                                       value="order"
+                                                       class="custom-control-input" [(ngModel)]="requestType">
+                                                <label class="custom-control-label" for="order_request">Creditor</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline  float-left">
+                                                <input type="radio" id="order_request" name="request_type"
+                                                       value="order"
+                                                       class="custom-control-input" [(ngModel)]="requestType">
+                                                <label class="custom-control-label" for="order_request">Debtor</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -82,37 +145,84 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="job_status">Job Status</label>
+                                        <label class="col-md-3 label-control" for="customer_name">Account</label>
                                         <div class="col-md-9">
-                                            <select id="job_status" name="interested" class="form-control">
-                                                <option value="none" selected disabled>No Status Selected</option>
-                                                <option value="WIP">Work-In-Progress</option>
-                                            </select>
+                                            <ng-select [items]="customers" bindLabel="name" bindValue="id"
+                                                       id="customer_name" (ngModelChange)="loadVehicle($event)"
+                                                       placeholder="Select Customer" name="customer_id"
+                                                       [(ngModel)]="vehicle.customer_id">
+                                                <ng-template ng-label-tmp let-item="item">
+                                                    <b class="mx-1">{{item.name}}</b> @{{item.email}}
+                                                </ng-template>
+                                                <ng-template ng-option-tmp let-item="item" let-index="index">
+                                                    <div class="my-2 mx-2">
+                                                        <b class="my-1">{{item.name}}</b>
+                                                        @<span>{{item.email}}</span>
+                                                        <br>
+                                                        <span><i
+                                                                class="fa fa-address-card-o mr-1"></i>{{item.address}}</span>
+                                                        <span><i
+                                                                class="fa fa-phone ml-2 mr-1"></i>{{item.mobile}}</span>
+                                                    </div>
+                                                </ng-template>
+                                            </ng-select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="vat_type">VAT &amp; NHL Type</label>
+                                        <label class="col-md-3 label-control" for="payment_type">Payment Type</label>
                                         <div class="col-md-9">
-                                            <select id="vat_type" name="interested" class="form-control">
+                                            <select id="payment_type" name="status" class="form-control">
                                                 <option value="none" selected disabled>No Type Selected</option>
-                                                <option value="WIP">VAT &amp; NHL</option>
+                                                <option value="cash">Cash</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-3 label-control" for="vat_rate">Rate</label>
+                                        <label class="col-md-3 label-control" for="acct_name">Acct Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="vat_rate" class="form-control border-primary"
-                                                   placeholder="VAT & NHL Rate" name="job_time">
+                                            <input type="text" id="acct_name" class="form-control border-primary"
+                                                   placeholder="Acct Name" name="acct_name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="status">Status</label>
+                                        <div class="col-md-9">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="none" selected disabled>No Status Selected</option>
+                                                <option value="open">Open</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group row mt-2">
-                                        <label class="col-md-4 label-control" for="notes">Job Carried Out</label>
-                                        <div class="col-md-12 offset-md-0">
-                                                <textarea id="notes" class="form-control border-primary"
-                                                          name="note" rows="5" placeholder=""></textarea>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="total_payment">Total Payment</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="total_payment" class="form-control border-primary"
+                                                   placeholder="Acct Name" name="total_payment" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="open_balance">Open Balance</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="open_balance" class="form-control border-primary"
+                                                   placeholder="Open Balance" name="open_balance" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="closing_balance">Closing
+                                            Balance</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="closing_balance" class="form-control border-primary"
+                                                   placeholder="Closing Balance" name="closing_balance" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="payment_ref">Payment
+                                            Reference</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="payment_ref" class="form-control border-primary"
+                                                   placeholder="Closing Balance" name="payment_ref" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -194,69 +304,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <h4 class="form-section mt-5"><i class="ft-info"></i> Summary </h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <table class="table table-responsive-md text-center">
-                                        <tbody>
-                                        <tr>
-                                            <td align="left">Total Parts and Materials</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">Total Labour</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">Total Sublet</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">Total Sundry</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">Others</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-md-6">
-                                    <table class="table table-responsive-md text-center">
-                                        <tbody>
-                                        <tr>
-                                            <td align="left" colspan="2">Total Service Amt (Excl)</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" rowspan="3" valign="middle">VAT & NHIL</td>
-                                            <td align="left">i. Parts 3.00%</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">ii. Labour</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">Sub Total Amount</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" colspan="2">Total Service Amt (Incl)</td>
-                                            <td>{{0 | currency: 'GHS '}}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                <span style="float: right">
-                                    <button class="btn btn-success btn-raised" (click)="save()">Save</button>
-                                </span>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
