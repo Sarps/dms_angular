@@ -19,7 +19,7 @@ export class GeneralLedgerComponent implements OnInit {
 
     constructor(private apiService: ApiService, private toastr: ToastrService, private modalService: NgbModal) {
         this.source = new ServerDataSource(apiService._http, {
-            endPoint: `${environment.apiUrl}/suppliers/dt`,
+            endPoint: `${environment.apiUrl}/accounts/dt`,
             pagerPageKey: 'page',
             pagerLimitKey: 'per_page',
             totalKey: 'total',
@@ -28,15 +28,12 @@ export class GeneralLedgerComponent implements OnInit {
         this.settings = {
             columns: {
                 type: {title: 'Type', filter: false},
-                account_name: {title: 'Account Name', filter: false},
+                name: {title: 'Account Name', filter: false},
                 account_no: {title: 'Account Number', filter: false},
                 description: {title: 'Description', filter: false},
                 bank: {title: 'Bank', filter: false},
-                group_id: {title: 'Group Id', filter: false},
-                created_by: {title: 'Created By', filter: false},
-                created_at: {title: 'Date Created', filter: false},
-                modified_by: {title: 'Modified By', filter: false},
-                modified_at: {title: 'Date Modified', filter: false},
+                group_type_id: {title: 'Group Id', filter: false},
+                created_at: {title: 'Date Created', filter: false}
             },
             attr: {
                 class: 'table table-responsive'
@@ -59,7 +56,7 @@ export class GeneralLedgerComponent implements OnInit {
             pager: {
                 perPage: 15,
             },
-            mode: 'external'
+            mode: 'inline'
         };
     }
 
@@ -102,7 +99,7 @@ export class GeneralLedgerComponent implements OnInit {
     async onCreateConfirm(event) {
         console.log(event);
         try {
-            // await this.apiService.addSupplier(event.newData);
+            await this.apiService.addAccount(event.newData);
             await event.confirm.resolve();
         } catch (e) {
             this.toastr.error('Couldn\'t create', e.error.message);

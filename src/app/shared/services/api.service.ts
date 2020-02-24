@@ -188,4 +188,9 @@ export class ApiService {
         console.log(resp);
         return resp;
     }
+
+    addAccount(data) {
+        return this._http.post(`${this.baseUrl}/accounts`, data).toPromise();
+    }
+
 }

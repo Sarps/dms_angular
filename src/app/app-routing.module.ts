@@ -10,6 +10,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {Content} from '@angular/compiler/src/render3/r3_ast';
 import {ContentInvoicePageComponent} from './invoice/content-invoice-page.component';
 import {FullInvoicePageComponent} from './invoice/full-invoice-page.component';
+import {LoginPageComponent} from './auth-pages/login/login-page.component';
+import {MaintenancePageComponent} from './auth-pages/maintenance/maintenance-page.component';
 
 const appRoutes: Routes = [
     {
@@ -39,20 +41,23 @@ const appRoutes: Routes = [
             {
                 path: 'home', component: DashboardComponent, data: {title: 'Home'},
             },
-            {path: '', redirectTo: '/home', pathMatch: 'prefix'},
         ]
     },
     {
         path: '', component: ContentLayoutComponent, data: {title: 'content Views'}, canActivate: [], children: [
             {
+                path: '',
+                loadChildren: () => import('./auth-pages/auth-pages.module').then(m => m.AuthPagesModule)
+            },
+            {
                 path: 'invoice',
                 component: ContentInvoicePageComponent,
                 data: {title: 'Invoice'},
                 canActivate: [AuthGuard]
-            }
+            },
         ]
     },
-    {path: '', redirectTo: '/home', pathMatch: 'full',},
+    {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 

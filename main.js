@@ -1,37 +1,36 @@
 const {app, BrowserWindow, screen} = require('electron');
+const { autoUpdater } = require("electron-updater");
 const url = require("url");
 const path = require("path");
 
 const touchBar = require("./desktop/touchbar");
 
-let mainWindow;
+let win;
 
 function createWindow() {
 
-    const { width, height } = screen.getPrimaryDisplay().workAreaSize
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 
-    mainWindow = new BrowserWindow({
+    win = new BrowserWindow({
         width: width - 100,
         height: height - 100,
         webPreferences: {
             nodeIntegration: true
         },
+        icon: `file://${__dirname}/resources/assets/img/logo.png`
         // titleBarStyle: 'hiddenInset',
     });
 
-    mainWindow.loadURL(
-        url.format({
-            pathname: path.join(__dirname, `/dist/index.html`),
-            protocol: "file:",
-            slashes: true
-        })
-    );
+    win.loadURL(`file://${__dirname}/resources/index.html`)
+        .then( () => autoUpdater.checkForUpdatesAndNotify() );
+    
+    win.setTouchBar(touchBar);
 
-    mainWindow.setTouchBar(touchBar);
+    win.on('closed', function () {
+        win = null
+    });
 
-    mainWindow.on('closed', function () {
-        mainWindow = null
-    })
+    win.webContents.openDevTools();
 }
 
 app.on('ready', createWindow);
@@ -41,5 +40,5 @@ app.on('window-all-closed', function () {
 });
 
 app.on('activate', function () {
-    if (mainWindow === null) createWindow()
+    if (win === null) createWindow()
 });

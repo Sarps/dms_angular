@@ -45,7 +45,7 @@ export class TaskboardComponent {
                 }, data)
             })
             .catch(e => {
-                this.toastr.error('Error setting up job board. Please refresh the page', 'Error');
+                this.toastr.error('Error loading the job board. Please check your connection', 'Error');
             });
     }
 
