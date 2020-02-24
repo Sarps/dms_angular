@@ -22,9 +22,8 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "electron:start": "ng build --base-href ./ && electron .",
-        "pack": "electron-builder --dir",
-        "dist": "ng b --deployUrl=./ --baseHref=./ --prod && electron-builder",
-        "release": "ng b --deployUrl=./ --baseHref=./ --prod && build --prod"
+        "dist": "ng b --deployUrl=./ --baseHref=./ --prod && electron-builder build -mw -p always",
+        "release": "build --prod"
     },
     "private": false,
     "dependencies": {
@@ -117,9 +116,22 @@
             "./main.js"
         ],
         "mac": {
-            "category": "public.app-category.productivity"
+            "category": "public.app-category.productivity",
+            "target": "dmg"
         },
-        "win": {},
-        "publish": ["github"]
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                }
+            ]
+        },
+        "publish": [
+            "github"
+        ]
     }
 }

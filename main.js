@@ -23,7 +23,7 @@ function createWindow() {
 
     win.loadURL(`file://${__dirname}/resources/index.html`)
         .then( () => autoUpdater.checkForUpdatesAndNotify() );
-    
+
     win.setTouchBar(touchBar);
 
     win.on('closed', function () {
