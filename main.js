@@ -21,8 +21,7 @@ function createWindow() {
         // titleBarStyle: 'hiddenInset',
     });
 
-    win.loadURL(`file://${__dirname}/resources/index.html`)
-        .then( () => autoUpdater.checkForUpdatesAndNotify() );
+    win.loadURL(`file://${__dirname}/resources/index.html`);
 
     win.setTouchBar(touchBar);
 
@@ -32,6 +31,8 @@ function createWindow() {
 
     win.webContents.openDevTools();
 }
+
+autoUpdater.checkForUpdatesAndNotify()
 
 app.on('ready', createWindow);
 

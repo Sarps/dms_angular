@@ -53,15 +53,16 @@ export class ServiceCenterComponent implements OnInit {
         this.apiService.getCustomerVehicles($event.id).then((resp: Array<any>) => this.vehicles = resp);
     }
 
-    openCosting() {
-        this.modalService.open(ServiceCostingComponent, {size: <any>'xl', centered: true});
+    openCosting(resp: any) {
+        const modal = this.modalService.open(ServiceCostingComponent, {size: <any>'xl', centered: true});
+        modal.componentInstance.job = resp;
     }
 
     async saveJob() {
         try {
             // TODO: Process 3 Date and Time Pairs
             const resp = await this.apiService.addJob(this.job);
-            this.openCosting();
+            this.openCosting(resp);
         } catch (e) {
             console.log(e);
         }

@@ -14,16 +14,16 @@
                             <div class="mt-3 mb-2 row">
                                 <div class="mx-auto">
                                     <div class="custom-control custom-radio custom-control-inline float-left">
-                                        <input type="radio" id="enquiry_request" name="request_type"
-                                               value="enquiry"
-                                               class="custom-control-input" [(ngModel)]="requestType">
-                                        <label class="custom-control-label" for="enquiry_request">Payment</label>
+                                        <input type="radio" id="type_payment" name="payment_type"
+                                               value="payment"
+                                               class="custom-control-input" [(ngModel)]="payment.type">
+                                        <label class="custom-control-label" for="type_payment">Payment</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline  float-left">
-                                        <input type="radio" id="order_request" name="request_type"
-                                               value="order"
-                                               class="custom-control-input" [(ngModel)]="requestType">
-                                        <label class="custom-control-label" for="order_request">Receipt</label>
+                                        <input type="radio" id="type_receipt" name="payment_type"
+                                               value="receipt"
+                                               class="custom-control-input" [(ngModel)]="payment.type">
+                                        <label class="custom-control-label" for="type_receipt">Receipt</label>
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                         <div class="col-md-9">
                                             <ng-select [items]="customers" bindLabel="name" bindValue="id"
                                                        id="customer_name" (ngModelChange)="loadVehicle($event)"
-                                                       placeholder="Select Customer" name="customer_id"
+                                                       placeholder="Select Account" name="customer_id"
                                                        [(ngModel)]="vehicle.customer_id">
                                                 <ng-template ng-label-tmp let-item="item">
                                                     <b class="mx-1">{{item.name}}</b> @{{item.email}}
@@ -227,83 +227,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <h4 class="form-section mt-3"><i class="ft-info"></i> Search Product</h4>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <ng-select [items]="[]" bindLabel="name" bindValue="name"
-                                               placeholder="Select Part" (change)="addPart($event)">
-                                        <ng-template ng-label-tmp let-item="item">
-                                            <img height="15" width="15" [src]="item.image_url"/>
-                                            <b class="mx-1">{{item.name}}</b>#{{item.number}}
-                                        </ng-template>
-                                        <ng-template ng-option-tmp let-item="item" let-index="index">
-                                            <div class="my-2">
-                                                <img height="75" [src]="item.image_url" style="max-height: 50px;"/>
-                                                <b class="mx-2">{{item.name}}</b> <span>{{item.description}}</span>
-                                            </div>
-                                        </ng-template>
-                                    </ng-select>
-                                </div>
-                                <div class="col-md-6">
-                                    <ng-select [items]="[]" bindLabel="name" bindValue="name"
-                                               placeholder="Select Service" (change)="addPart($event)">
-                                        <ng-template ng-label-tmp let-item="item">
-                                            <img height="15" width="15" [src]="item.image_url"/>
-                                            <b class="mx-1">{{item.name}}</b>#{{item.number}}
-                                        </ng-template>
-                                        <ng-template ng-option-tmp let-item="item" let-index="index">
-                                            <div class="my-2">
-                                                <img height="75" [src]="item.image_url" style="max-height: 50px;"/>
-                                                <b class="mx-2">{{item.name}}</b> <span>{{item.description}}</span>
-                                            </div>
-                                        </ng-template>
-                                    </ng-select>
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                <span style="float: right">
+                                    <button class="btn btn-success btn-raised" (click)="save()">Save</button>
+                                </span>
                                 </div>
                             </div>
-                            <table class="table table-responsive-md text-center mb-5">
-                                <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Description</th>
-                                    <th>Quantity</th>
-                                    <th>UOM</th>
-                                    <th>Unit Price</th>
-                                    <th>Discount</th>
-                                    <th>Amount</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let part of parts; let i = index;">
-                                    <td><img class="media-object round-media" [src]="part.image_url"
-                                             alt="part image" style="height: 75px;"/></td>
-                                    <td>{{part.name}}</td>
-                                    <td>{{part.number}}</td>
-                                    <td *ngIf="requestType === 'order'">
-                                        <input type="text" id="cost_price" class="form-control border-primary"
-                                               placeholder="Amount" name="cost_price"
-                                               [(ngModel)]="part.retail_price">
-                                    </td>
-                                    <td *ngIf="requestType === 'order'">
-                                        {{part.quantity}}
-                                        <div class="btn-group ml-1">
-                                            <a class="bg-info px-1 py-1 white font-medium-5"
-                                               (click)="part.quantity = part.quantity-1">-</a>
-                                            <a class="bg-info px-1 py-1 white font-medium-5"
-                                               (click)="part.quantity = part.quantity+1">+</a>
-                                        </div>
-                                    </td>
-                                    <td>{{part.manufacturer.name}}</td>
-                                    <td>{{part.model.name}}</td>
-                                    <td>{{part.category.name}}</td>
-                                    <td>
-                                        <a class="danger" data-original-title="" title="" (click)="removePart(i)">
-                                            <i class="ft-trash font-medium-3"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </form>
                 </div>

@@ -17,9 +17,9 @@ export class TaskboardComponent {
     BAG = 'task-group';
     tasks: any = {};
     groups = [
-        {title: 'On Hold', key: 'backLog', icon: 'ft-alert-octagon', color: 'warning'},
+        {title: 'On Hold', key: 'backlog', icon: 'ft-alert-octagon', color: 'warning'},
         {title: 'To Do', key: 'todo', icon: 'ft-list', color: 'primary'},
-        {title: 'In Progress', key: 'inProcess', icon: 'ft-trending-up', color: 'info'},
+        {title: 'In Progress', key: 'inprocess', icon: 'ft-trending-up', color: 'info'},
         {title: 'Completed', key: 'completed', icon: 'ft-thumbs-up', color: 'success'},
     ];
 

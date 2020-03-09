@@ -250,3 +250,11 @@ X
 (src/app/dashboard/dashboard.component.ts,8/9/89cf8f7fdc2a1201a9459c85593deb6e14615f70
 _
 /src/app/layouts/full/full-layout.component.scss,e/4/e49f0dddab422e9b4faa0303ffd4b986cc936ce7
+G
+src/assets/i18n/de.json,2/4/24943465574c198ea81b36ed67b6b598ffa3c4d8
+G
+src/assets/i18n/en.json,8/b/8b6a462aa04616b27e55711ab3f02697c2c53ff9
+[
++src/assets/sass/scss/core/fixed-navbar.scss,9/1/91226379e33bb43421060c449905295f526ffb00
+b
+2src/app/auth-pages/login/login-page.component.html,6/c/6c58e5d2e45c08a2a6de98b00a9df3f22e62b038

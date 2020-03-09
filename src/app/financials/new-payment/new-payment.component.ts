@@ -22,11 +22,13 @@ export class NewPaymentComponent implements OnInit {
     vehicle: any = {};
     editMode: boolean;
     dueDate: any;
+    payment: any;
 
     constructor(private apiService: ApiService, private router: Router,
                 private route: ActivatedRoute, private toastr: ToastrService) {
         this.parts = [];
         this.editMode = this.router.url.indexOf('/edit') > -1;
+        this.payment = {};
     }
 
     ngOnInit(): void {

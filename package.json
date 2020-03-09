@@ -1,6 +1,6 @@
 {
     "name": "dms",
-    "version": "0.0.1-alpha",
+    "version": "0.0.11-alpha",
     "description": "Dealership Management System",
     "homepage": "https://kwansah-auto.herokuapp.com",
     "license": "MIT",
@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Sarps/dms_angular.git"
+        "url": "https://github.com/Sarps/dms_angular.git"
     },
     "main": "main.js",
     "scripts": {
@@ -22,7 +22,7 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "electron:start": "ng build --base-href ./ && electron .",
-        "dist": "ng b --deployUrl=./ --baseHref=./ --prod && electron-builder build -mw -p always",
+        "dist": "ng b --deployUrl=./ --baseHref=./ --prod && GH_TOKEN=986a64297e1e6c6b186433c629bd65d4d89bc5e5 electron-builder build -mw -p always",
         "release": "build --prod"
     },
     "private": false,

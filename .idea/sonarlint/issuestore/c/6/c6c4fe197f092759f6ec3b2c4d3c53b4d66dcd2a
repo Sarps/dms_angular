@@ -1,30 +1,30 @@
 
-B	Web:S5256¯"%Add "<th>" headers to this "<table>".(ŸÏáû8çˆƒÁ€.
-l Web:TableHeaderHasIdOrScopeCheckn";Add either an 'id' or a 'scope' attribute to this <th> tag.(Ùê¤øÿÿÿÿ
-K	Web:S1827²")Remove this deprecated "align" attribute.(³¡·‚ÿÿÿÿÿ8çˆƒÁ€.
 NWeb:ImgWithoutAltCheckU"%Add an "alt" attribute to this image.(åğÉé8Ø¾ŞÀ€.
-SWeb:ImgWithoutAltCheck_"%Add an "alt" attribute to this image.(œœç şÿÿÿÿ8œæŞÀ€.
-K	Web:S1827£")Remove this deprecated "align" attribute.(Ç–Òüùÿÿÿÿ8«–øÀ€.
-F	Web:S1827¦")Remove this deprecated "align" attribute.(ü”Óì8ŠíøÀ€.
-K	Web:S1827º")Remove this deprecated "align" attribute.(¥åÛüşÿÿÿÿ8ÅÁ€.
-g Web:TableHeaderHasIdOrScopeCheckq";Add either an 'id' or a 'scope' attribute to this <th> tag.(¿©„Š
-PWeb:TableWithoutCaptionCheck¯" Add a description to this table.(ŸÏáû8çˆƒÁ€.
-F	Web:S1827Â")Remove this deprecated "align" attribute.(œÖã8çˆƒÁ€.
-K	Web:S1827©")Remove this deprecated "align" attribute.(†‡çÿÿÿÿÿ8ı–ıÀ€.
-n Web:TableHeaderHasIdOrScopeChecku";Add either an 'id' or a 'scope' attribute to this <th> tag.(ª°ú8×âœÁ€.
-l Web:TableHeaderHasIdOrScopeChecks";Add either an 'id' or a 'scope' attribute to this <th> tag.(Æ¿Çøÿÿÿÿ
-l Web:TableHeaderHasIdOrScopeCheckp";Add either an 'id' or a 'scope' attribute to this <th> tag.(„âÆ˜ıÿÿÿÿ
-HWeb:TableWithoutCaptionCheckk" Add a description to this table.(‰·¨è
-K	Web:S1827 ")Remove this deprecated "align" attribute.(ƒ•Öçûÿÿÿÿ8‘÷À€.
-l Web:TableHeaderHasIdOrScopeChecko";Add either an 'id' or a 'scope' attribute to this <th> tag.(ß“şæøÿÿÿÿ
-B	Web:S5256š"%Add "<th>" headers to this "<table>".(ŸÏáû8âÂÿÀ€.
-PWeb:TableWithoutCaptionCheckš" Add a description to this table.(ŸÏáû8ÓôèÀ€.
-F	Web:S1827µ")Remove this deprecated "align" attribute.(„¥‹ˆ8šé“Á€.
-G	Web:S1827µ"*Remove this deprecated "valign" attribute.(„¥‹ˆ8çˆƒÁ€.
-F	Web:S1827¶")Remove this deprecated "align" attribute.(üõà8ŠˆÁ€.
-F	Web:S1827¾")Remove this deprecated "align" attribute.(¤áì8çˆƒÁ€.
-NWeb:ImgWithoutAltCheckd"%Add an "alt" attribute to this image.(åğÉé8œæŞÀ€.
-l Web:TableHeaderHasIdOrScopeCheckt";Add either an 'id' or a 'scope' attribute to this <th> tag.(Ï–ßóüÿÿÿÿ
-SWeb:ImgWithoutAltCheckP"%Add an "alt" attribute to this image.(œœç şÿÿÿÿ8Ø¾ŞÀ€.
 l Web:TableHeaderHasIdOrScopeCheckr";Add either an 'id' or a 'scope' attribute to this <th> tag.(¸ôº¥ùÿÿÿÿ
+HWeb:TableWithoutCaptionCheckk" Add a description to this table.(‰·¨è
+NWeb:ImgWithoutAltCheckd"%Add an "alt" attribute to this image.(åğÉé8œæŞÀ€.
+PWeb:TableWithoutCaptionCheckš" Add a description to this table.(ŸÏáû8ÓôèÀ€.
+K	Web:S1827 ")Remove this deprecated "align" attribute.(ƒ•Öçûÿÿÿÿ8‘÷À€.
+SWeb:ImgWithoutAltCheckP"%Add an "alt" attribute to this image.(œœç şÿÿÿÿ8Ø¾ŞÀ€.
+F	Web:S1827¦")Remove this deprecated "align" attribute.(ü”Óì8ŠíøÀ€.
+K	Web:S1827©")Remove this deprecated "align" attribute.(†‡çÿÿÿÿÿ8ı–ıÀ€.
+K	Web:S1827£")Remove this deprecated "align" attribute.(Ç–Òüùÿÿÿÿ8«–øÀ€.
+B	Web:S5256¯"%Add "<th>" headers to this "<table>".(ŸÏáû8çˆƒÁ€.
+n Web:TableHeaderHasIdOrScopeChecku";Add either an 'id' or a 'scope' attribute to this <th> tag.(ª°ú8×âœÁ€.
+g Web:TableHeaderHasIdOrScopeCheckq";Add either an 'id' or a 'scope' attribute to this <th> tag.(¿©„Š
+l Web:TableHeaderHasIdOrScopeCheckt";Add either an 'id' or a 'scope' attribute to this <th> tag.(Ï–ßóüÿÿÿÿ
+l Web:TableHeaderHasIdOrScopeCheckn";Add either an 'id' or a 'scope' attribute to this <th> tag.(Ùê¤øÿÿÿÿ
+SWeb:ImgWithoutAltCheck_"%Add an "alt" attribute to this image.(œœç şÿÿÿÿ8œæŞÀ€.
+G	Web:S1827µ"*Remove this deprecated "valign" attribute.(„¥‹ˆ8çˆƒÁ€.
+l Web:TableHeaderHasIdOrScopeChecks";Add either an 'id' or a 'scope' attribute to this <th> tag.(Æ¿Çøÿÿÿÿ
+PWeb:TableWithoutCaptionCheck¯" Add a description to this table.(ŸÏáû8çˆƒÁ€.
+F	Web:S1827¾")Remove this deprecated "align" attribute.(¤áì8çˆƒÁ€.
+F	Web:S1827Â")Remove this deprecated "align" attribute.(œÖã8çˆƒÁ€.
+K	Web:S1827²")Remove this deprecated "align" attribute.(³¡·‚ÿÿÿÿÿ8çˆƒÁ€.
+F	Web:S1827¶")Remove this deprecated "align" attribute.(üõà8ŠˆÁ€.
+K	Web:S1827º")Remove this deprecated "align" attribute.(¥åÛüşÿÿÿÿ8ÅÁ€.
+F	Web:S1827µ")Remove this deprecated "align" attribute.(„¥‹ˆ8šé“Á€.
 F	Web:S1827")Remove this deprecated "align" attribute.(ñøÁç8åéöÀ€.
+l Web:TableHeaderHasIdOrScopeCheckp";Add either an 'id' or a 'scope' attribute to this <th> tag.(„âÆ˜ıÿÿÿÿ
+B	Web:S5256š"%Add "<th>" headers to this "<table>".(ŸÏáû8âÂÿÀ€.
+l Web:TableHeaderHasIdOrScopeChecko";Add either an 'id' or a 'scope' attribute to this <th> tag.(ß“şæøÿÿÿÿ
