@@ -1,4 +1,4 @@
 export const environment = {
-    apiUrl: 'https://kwansah-dms-api.herokuapp.com/api',
+    apiUrl: 'https://inven3ry.herokuapp.com/api',
     production: true
 };
