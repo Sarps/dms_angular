@@ -52,7 +52,7 @@
         "express": "^4.17.1",
         "gulp": "4.0.2",
         "intl": "1.2.5",
-        "moment": "2.24.0",
+        "moment": "2.29.2",
         "ng-chartist": "3.1.0",
         "ng2-charts": "2.2.3",
         "ng2-completer": "^3.0.3",
